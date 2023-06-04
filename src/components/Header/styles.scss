@@ -1,0 +1,12 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+// header__logo
+.header__content {
+  display: flex;
+  gap: 30px;
+}
+// header__register-button
+// header__login-button
