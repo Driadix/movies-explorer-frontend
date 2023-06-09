@@ -1,0 +1,47 @@
+@use '../../styles/' as *;
+
+.intro {
+  
+}
+
+.greet {
+  background-color: $background-gray-color;
+  padding: 75px 0;
+}
+
+.greet__container {
+  display: flex;
+  gap: 190px;
+  margin-bottom: 84px;
+}
+
+.greet__text-container {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.greet__title {
+  @include text-reset;
+  max-width: 640px;
+  font-size: $fs-main-title;
+}
+
+.greet__text {
+  @include text-reset;
+  max-width: 310px;
+  font-size: $fs-small-3;
+  mix-blend-mode: normal;
+  opacity: 0.5;
+}
+
+.greet__about-button {
+  @include btn-reset;
+  padding: 10px 20px;
+  opacity: 0.6;
+  border: 1px solid #000000;
+  border-radius: 3px;
+  font-weight: $fw-medium;
+  font-size: $fs-small-2;
+  line-height: $base-line-height * 1.101;
+}

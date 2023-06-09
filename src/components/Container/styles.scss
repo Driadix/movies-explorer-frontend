@@ -8,7 +8,7 @@
     width: calc(100% - 30px * 2);
   }
 
-  @include media-q($breakpoint-xsmall) {
+  @include media-q($breakpoint-small) {
     width: calc(100% - 10px * 2);
   }
 }

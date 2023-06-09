@@ -1,12 +1,40 @@
+@use '../../styles/' as *;
+
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  min-height: 74px;
 }
-// header__logo
+
 .header__content {
   display: flex;
-  gap: 30px;
 }
-// header__register-button
-// header__login-button
+.header__register-button {
+  @include btn-reset;
+  font-weight: $fw-medium;
+  font-size: $fs-small-2;
+  margin-right: 30px;
+  line-height: $base-line-height * 1.101;
+  
+  @include media-q($breakpoint-small) {
+    margin-right: 14px;
+    font-size: $fs-small-0;
+  }
+}
+
+.header__login-button {
+  @include btn-reset;
+  color: #ffffff;
+  padding: 8px 20px;
+  background: #3456F3;
+  border-radius: 3px;
+  font-weight: $fw-medium;
+  font-size: $fs-small-2;
+  line-height: $base-line-height * 1.101;
+
+  @include media-q($breakpoint-small) {
+    padding: 5px 12px;
+    font-size: $fs-small-0;
+  }
+}
