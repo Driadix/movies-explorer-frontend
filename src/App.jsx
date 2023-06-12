@@ -7,7 +7,9 @@ import Footer from './components/Footer';
 import Register from './components/Register'
 import Login from './components/Login'
 import Main from './components/Main'
-import Intro from './components/Intro';
+import Movies from './components/Movies';
+import Profile from './components/Profile';
+import SavedMovies from './components/SavedMovies';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
@@ -20,23 +22,24 @@ function App() {
   const handleRegister = () => {
 
   }
-
-
-
+  
   return (
     <div className="App">
       <Routes>
-        <Route path='/intro' element={<><Header isIntroPage={true}/><Intro/><Footer/></>} />
+        <Route path='/' element={<><Header isIntroPage={true}/><Main/><Footer/></>} />
         <Route
-            path="/sign-up"
+            path="/signup"
             element={<Register onRegister={handleRegister} isLoading={isLoading} />}
           />
-          <Route path="/sign-in" element={<Login onLogin={handleLogin} isLoading={isLoading} />} />
+          <Route path="/signin" element={<Login onLogin={handleLogin} isLoading={isLoading} />} />
+          <Route path="/movies" element={<Movies isLoading={isLoading} />} />
+          <Route path="/saved-movies" element={<SavedMovies isLoading={isLoading} />} />
+          <Route path="/profile" element={<Profile isLoading={isLoading} />} />
           <Route
             path="*"
             element={
               <ProtectedRoute
-                component={Main}
+                component={Movies}
                 
               />
             }

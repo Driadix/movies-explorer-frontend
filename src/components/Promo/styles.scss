@@ -1,33 +1,29 @@
 @use '../../styles/' as *;
 
-.intro {
-  
-}
-
-.greet {
+.promo {
   background-color: $background-gray-color;
   padding: 75px 0;
 }
 
-.greet__container {
+.promo__container {
   display: flex;
   gap: 190px;
   margin-bottom: 84px;
 }
 
-.greet__text-container {
+.promo__text-container {
   display: flex;
   flex-direction: column;
   gap: 36px;
 }
 
-.greet__title {
+.promo__title {
   @include text-reset;
   max-width: 640px;
   font-size: $fs-main-title;
 }
 
-.greet__text {
+.promo__text {
   @include text-reset;
   max-width: 310px;
   font-size: $fs-small-3;
@@ -35,7 +31,7 @@
   opacity: 0.5;
 }
 
-.greet__about-button {
+.promo__about-button {
   @include btn-reset;
   padding: 10px 20px;
   opacity: 0.6;
