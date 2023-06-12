@@ -16,4 +16,21 @@
 @mixin text-reset() {
   padding: 0;
   margin: 0;
+  font-weight: 400;
+}
+
+@mixin intro-section-title() {
+  @include text-reset;
+  display: block;
+  position: relative;
+
+  &:after {
+    content: '';
+    position: absolute;
+    margin-top: 23px;
+    display: block;
+    height: 1px;
+    width: 100%;
+    background-color: #000000;
+  }
 }

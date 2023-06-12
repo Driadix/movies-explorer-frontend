@@ -1,4 +1,5 @@
 import React from 'react'
+import './styles.scss'
 
 const AboutProject = () => {
   return (
@@ -16,16 +17,14 @@ const AboutProject = () => {
           </div>
           </div>
           <div className="about-project__schedule">
-            <div className="about-project__schedule-container">
               <div className="about-project__schedule-time">
                 <p className="about-project__schedule-time-text">1 неделя</p>
                 <p className="about-project__schedule-time-subtext">Back-end</p>
               </div>
-              <div className="about-project__schedule-time">
-                <p className="about-project__schedule-time-text">4 недели</p>
+              <div className="about-project__schedule-time about-project__schedule-time_connected">
+                <p className="about-project__schedule-time-text about-project__schedule-time-text_theme_gray">4 недели</p>
                 <p className="about-project__schedule-time-subtext">Front-end</p>
               </div>
-            </div>
           </div>
         </div>
       </section>

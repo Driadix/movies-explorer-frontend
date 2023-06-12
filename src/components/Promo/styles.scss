@@ -77,6 +77,11 @@
 .promo__logo {
   max-width: 310px;
   height: 304px;
+
+  @include media-q($breakpoint-small) {
+    max-width: 210;
+    height: 206px;
+  }
 }
 
 .promo__about-button {
