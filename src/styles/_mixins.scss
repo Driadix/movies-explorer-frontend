@@ -47,7 +47,7 @@
 
 @mixin link-button() {
   @include link-reset;
-  align-items: center;
   display: flex;
-  width:fit-content;
+  align-items: center;
+  width: fit-content;
 }
