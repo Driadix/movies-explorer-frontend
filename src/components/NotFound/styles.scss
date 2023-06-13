@@ -1,0 +1,52 @@
+@use '../../styles/' as *;
+
+.not-found {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 5px;
+  padding: 250px 0 60px;
+
+  @include media-q($breakpoint-medium) {
+    padding: 400px 0 220px;
+  }
+  @include media-q($breakpoint-small) {
+    padding: 330px 0 30px;
+  }
+}
+
+.not-found__title {
+  @include text-reset;
+  font-size: $fs-404;
+  line-height: $base-line-height;
+
+  @include media-q($breakpoint-small) {
+    font-size: $fs-404-small;
+  }
+}
+
+.not-found__text {
+  @include text-reset;
+  font-size: $fs-medium;
+  line-height: $base-line-height;
+
+  @include media-q($breakpoint-small) {
+    font-size: $fs-primary;
+  }
+}
+
+.not-found__button {
+  @include btn-reset;
+  margin: auto;
+  margin-bottom: 60px;
+  color: $primary-color;
+  font-size: $fs-primary;
+  line-height: $base-line-height;
+
+  @include media-q($breakpoint-small) {
+    font-size: $fs-small-2;
+  }
+}

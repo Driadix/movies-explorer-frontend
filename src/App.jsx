@@ -10,6 +10,7 @@ import Main from './components/Main'
 import Movies from './components/Movies';
 import Profile from './components/Profile';
 import SavedMovies from './components/SavedMovies';
+import NotFound from './components/NotFound';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
@@ -37,13 +38,7 @@ function App() {
           <Route path="/profile" element={<Profile isLoading={isLoading} />} />
           <Route
             path="*"
-            element={
-              <ProtectedRoute
-                component={Movies}
-                
-              />
-            }
-          />
+            element={<NotFound isLoading={isLoading} />} />
       </Routes>
     </div>
   );
