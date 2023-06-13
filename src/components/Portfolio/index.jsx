@@ -5,6 +5,7 @@ const Portfolio = () => {
   return (
     <section className='portfolio'>
       <h2 className="portfolio__title">Портфолио</h2>
+      <nav portfolio__links>
       <ul className="portfolio__list">
         <li className="portfolio__item">
           <p className="portfolio__item-name">Статичный сайт</p>
@@ -19,6 +20,7 @@ const Portfolio = () => {
           <a href="https://github.com/Driadix/react-mesto-api-full-gha" target="_blank" className="portfolio__item-link"></a>
         </li>
       </ul>
+      </nav>
     </section>
   )
 }
