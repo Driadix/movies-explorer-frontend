@@ -14,7 +14,7 @@ const Promo = () => {
         </div>
         <img src={logo} alt="intro logo" className="promo__logo" />
         </div>
-        <button className="promo__about-button">Узнать больше</button>
+        <a href='#about-project' className="promo__about-button">Узнать больше</a>
         </Container>
       </section>
   )

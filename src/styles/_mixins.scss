@@ -44,3 +44,10 @@
     background-color: #000000;
   }
 }
+
+@mixin link-button() {
+  @include link-reset;
+  align-items: center;
+  display: flex;
+  width:fit-content;
+}

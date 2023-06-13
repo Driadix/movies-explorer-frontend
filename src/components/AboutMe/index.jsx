@@ -16,7 +16,7 @@ const AboutMe = () => {
               В данный момент обучаюсь на втором курсе профильного университета. Работаю системным администратором.
               Стремлюсь перейти в сферу веб-разработки.</p>
           </div>
-          <a href="https://github.com/Driadix" className="about-me__info-link">Github</a>
+          <a href="https://github.com/Driadix" target='blank' className="about-me__info-link">Github</a>
         </div>
         <img src={profilePicture} alt="my image" className="about-me__image" />
       </div>

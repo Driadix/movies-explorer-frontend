@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import logo from '../../images/logo.svg'
 import Container from '../Container';
 import './styles.scss'
@@ -13,8 +14,8 @@ const Header = ({isIntroPage = false}) => {
       <div className="header__content">
         {isIntroPage && 
           (<>
-          <button className="header__register-button">Регистрация</button>
-          <button className="header__login-button">Войти</button>
+          <Link to='signup' className="header__register-button">Регистрация</Link>
+          <Link to='signin' className="header__login-button">Войти</Link>
           </>
           )
         }

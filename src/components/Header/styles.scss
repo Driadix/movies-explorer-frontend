@@ -21,11 +21,12 @@
   display: flex;
 }
 .header__register-button {
-  @include btn-reset;
+  @include link-button;
   font-weight: $fw-medium;
   font-size: $fs-small-2;
   margin-right: 30px;
   line-height: $base-line-height * 1.101;
+  min-height: 32px;
   
   @include media-q($breakpoint-small) {
     margin-right: 14px;
@@ -34,7 +35,7 @@
 }
 
 .header__login-button {
-  @include btn-reset;
+  @include link-button;
   color: #ffffff;
   padding: 8px 20px;
   background: #3456F3;
