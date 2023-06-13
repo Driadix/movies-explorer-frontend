@@ -11,12 +11,18 @@ const Main = () => {
   return (
     <main className="intro">
       <Promo />
+
       <Container>
-      <AboutProject />
-      <Techs />
-      <AboutMe />
-      <Portfolio />
+        <AboutProject />
       </Container>
+
+        <Techs />
+        
+      <Container>
+        <AboutMe />
+        <Portfolio />
+      </Container>
+      
     </main>
   )
 }

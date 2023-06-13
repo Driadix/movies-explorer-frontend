@@ -19,6 +19,11 @@
   font-weight: 400;
 }
 
+@mixin list-reset() {
+  @include text-reset;
+  list-style-type: none;
+}
+
 @mixin intro-section-title() {
   @include text-reset;
   display: block;

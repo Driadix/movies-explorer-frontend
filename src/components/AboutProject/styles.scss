@@ -62,6 +62,7 @@
 
 .about-project__info-title {
   @include text-reset;
+  letter-spacing: -0.04em;
   font-size: $fs-medium * 1.12;
   line-height: $base-line-height;
 }
