@@ -5,8 +5,10 @@ import './styles.scss'
 
 const Header = ({isIntroPage = false}) => {
   return (
-    <Container>
-    <header className="header">
+    
+    <header className={`header ${isIntroPage && 'header_theme_gray'}`}>
+      <Container>
+      <div className="header__flex-container">
       <img src={logo} alt="Site logo" className="header__logo" />
       <div className="header__content">
         {isIntroPage && 
@@ -16,9 +18,10 @@ const Header = ({isIntroPage = false}) => {
           </>
           )
         }
+        </div>
       </div>
+      </Container>
     </header>
-    </Container>
   )
 }
 

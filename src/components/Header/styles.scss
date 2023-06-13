@@ -1,10 +1,20 @@
 @use '../../styles/' as *;
 
 .header {
+  min-height: 74px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header_theme_gray {
+  background-color: $background-gray-color;
+}
+
+.header__flex-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-height: 74px;
 }
 
 .header__content {
