@@ -85,11 +85,6 @@
   @include media-q($breakpoint-medium) {
     grid-template-columns: repeat(auto-fit, 94px);
   }
-
-  // @include media-q($breakpoint-small) {
-  //   grid-template-columns: repeat(auto-fit, 95px);
-  //   gap: 5px;
-  // }
 }
 
 .techs__item {

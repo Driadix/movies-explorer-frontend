@@ -24,6 +24,11 @@
   list-style-type: none;
 }
 
+@mixin link-reset() {
+  text-decoration: none;
+  color: inherit;
+}
+
 @mixin intro-section-title() {
   @include text-reset;
   display: block;
