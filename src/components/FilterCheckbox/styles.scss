@@ -1,0 +1,40 @@
+@use '../../styles/' as *;
+
+.toggle__switch {
+  position: relative;
+  display: inline-block;
+  width: 34px;
+  height: 14px;
+}
+
+.toggle__checkbox {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle__slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: $green-accent-color;
+  border-radius: 20px;
+
+  &:before {
+    position: absolute;
+    content: '';
+    width: 10px;
+    height: 10px;
+    left: 2px;
+    bottom: 2px;
+    background-color: #ffffff;
+    border-radius: 50%;
+  }
+}
+
+.toggle__checkbox:checked + .toggle__slider:before {
+  transform: translateX(20px);
+}

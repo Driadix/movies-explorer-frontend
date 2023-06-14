@@ -33,9 +33,9 @@ function App() {
             element={<Register onRegister={handleRegister} isLoading={isLoading} />}
           />
           <Route path="/signin" element={<Login onLogin={handleLogin} isLoading={isLoading} />} />
-          <Route path="/movies" element={<Movies isLoading={isLoading} />} />
-          <Route path="/saved-movies" element={<SavedMovies isLoading={isLoading} />} />
-          <Route path="/profile" element={<Profile isLoading={isLoading} />} />
+          <Route path="/movies" element={<><Header/><Movies isLoading={isLoading} /><Footer/></>} />
+          <Route path="/saved-movies" element={<><Header /><SavedMovies isLoading={isLoading} /><Footer/></>} />
+          <Route path="/profile" element={<><Header /><Profile isLoading={isLoading} /></>} />
           <Route
             path="*"
             element={<NotFound isLoading={isLoading} />} />
