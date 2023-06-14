@@ -1,0 +1,113 @@
+@use '../../../styles/' as *;
+
+.header__list {
+  @include list-reset;
+  display: flex;
+  font-size: $fs-primary;
+
+  @include media-q($breakpoint-medium) {
+    display: none;
+    flex-direction: column;
+  }
+}
+
+.header__list_burger {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.header__movies-links {
+  display: flex;
+  gap: 20px;
+  margin-right: 50px;
+
+  @include media-q($breakpoint-medium) {
+    margin-right: 0;
+  }
+}
+
+.header__movies-links_burger {
+  flex-direction: column;
+  gap: 28px;
+
+  @include media-q($breakpoint-small) {
+    gap: 24px;
+  }
+}
+
+.header__item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header__item_burger {
+  display: none;
+
+  @include media-q($breakpoint-medium) {
+    display: flex;
+  }
+}
+
+.header__item_account {
+  display: flex;
+  gap: 17px;
+  cursor: pointer;
+  @include base-transition;
+}
+
+.header__main-button {
+  @include link-reset;
+  
+  font-size: $fs-medium;
+  font-weight: $fw-medium;
+
+  &:hover {
+    border-bottom: 2px solid #000000;;
+  }
+}
+
+.header__movies-button {
+  @include link-reset;
+  font-weight: $fw-medium;
+  line-height: $base-line-height;
+
+  @include media-q($breakpoint-medium) {
+    font-size: $fs-medium;
+    font-weight: $fw-medium;
+
+    &:hover {
+      border-bottom: 2px solid #000000;;
+    }
+  }
+}
+
+.header__saved-movies-button {
+  @include link-reset;
+  line-height: $base-line-height;
+
+  @include media-q($breakpoint-medium) {
+    font-size: $fs-medium;
+    font-weight: $fw-medium;
+
+    &:hover {
+      border-bottom: 2px solid #000000;;
+    }
+  }
+}
+
+.header__profile-button {
+  @include btn-reset;
+  font-weight: $fw-medium;
+  line-height: $base-line-height;
+}
+
+.header__profile-icon {
+  width: 26px;
+  height: 30px;
+  background: url('../../../images/profile-icon.svg') center no-repeat;
+  background-color: $background-gray-light-color;
+  border-radius: 4px;
+}

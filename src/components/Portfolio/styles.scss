@@ -33,14 +33,17 @@
 
 .portfolio__item {
   display: flex;
-  position: relative;
   justify-content: space-between;
 
   border-bottom: 1px solid $gray-base-color;
 }
 
-.portfolio__item-name {
-  @include text-reset;
+.portfolio__item-link {
+  @include link-reset;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
   padding-bottom: 20px;
   letter-spacing: -0.04em;
   font-size: $fs-main-title-small;
@@ -52,13 +55,13 @@
   @include media-q($breakpoint-small) {
     font-size: $fs-medium;
   }
-}
 
-.portfolio__item-link {
-  @include link-reset;
-  margin-top: 20px;
-  background: url('../../images/link-arrow.svg') no-repeat;
-  display: block;
-  width: 16px;
-  height: 16px;
+  &::after {
+    content: '';
+    display: block;
+    margin-top: 20px;
+    background: url('../../images/link-arrow.svg') no-repeat;
+    width: 16px;
+    height: 16px;
+  }
 }

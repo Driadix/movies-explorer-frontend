@@ -11,6 +11,7 @@
   color: inherit;
   background-color: transparent;
   cursor: pointer;
+  @include base-transition;
 }
 
 @mixin text-reset() {
@@ -27,6 +28,14 @@
 @mixin link-reset() {
   text-decoration: none;
   color: inherit;
+  @include base-transition;
+}
+
+@mixin base-transition() {
+  &:hover {
+    opacity: 0.4;
+    transition: opacity .6s linear;
+  }
 }
 
 @mixin intro-section-title() {

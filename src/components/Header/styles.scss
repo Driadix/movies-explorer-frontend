@@ -17,42 +17,15 @@
   align-items: center;
 }
 
-.header__list {
-  @include list-reset;
-  display: flex;
-}
-
-.header__movies-links {
-  display: flex;
-  gap: 20px;
-  margin-right: 50px;
-}
-
-.header__item {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.header__item_account {
-  display: flex;
-  gap: 17px;
+.header__logo {
+  @include base-transition;
   cursor: pointer;
 }
 
-.header__movies-button {
-  @include link-reset;
-
-}
-
-.header__saved-movies-button {
-  @include link-reset;
-
-}
-
-.header__profile-button {
-  @include link-reset;
-  
+.header__list-intro {
+  @include list-reset;
+  display: flex;
+  font-size: $fs-primary;
 }
 
 .header__register-button {
@@ -82,5 +55,99 @@
   @include media-q($breakpoint-small) {
     padding: 5px 12px;
     font-size: $fs-small-0;
+  }
+}
+
+.header__burger {
+  display: flex;
+  transition: all .3s ease-out;
+}
+
+.header__burger_opened {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  max-width: 520px;
+  height: 100%;
+  z-index: 10;
+  padding: 160px 0 100px;
+  background-color: $background-main-color;
+  flex-direction: column;
+  align-items: center;
+
+  &::after {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100vh;
+    height: 100vh;
+    background-color: transparent;
+    opacity: 0.3;
+
+  }
+
+  @include media-q($breakpoint-small) {
+    padding: 145px 0 55px;
+  }
+}
+
+.header__burger-btn-open {
+  @include btn-reset;
+  display: none;
+  position: relative;
+  width: 30px;
+  height: 3px;
+  background: #000000;
+  
+  @include media-q($breakpoint-medium) {
+    display: block;
+  }
+  @include media-q($breakpoint-small) {
+    font-size: $fs-medium;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 7px;
+    width: 30px;
+    height: 3px;
+    background: #000000;
+  }
+  &:before {
+    content: '';
+    position: absolute;
+    top: 7px;
+    left: 0;
+    width: 30px;
+    height: 3px;
+    background: #000000;
+  }
+}
+
+.header__burger-btn-open_non-visible {
+  display: none;
+}
+
+.header__burger-btn-close {
+  display: none;
+}
+
+.header__burger-btn-close_visible {
+  @include btn-reset;
+  display: block;
+  position: absolute;
+  top: 23px;
+  right: 23px;
+
+  &:after {
+    content: "";
+    display: block;
+    background: url('../../images/close-icon.svg') no-repeat center;
+    width: 100%;
+    width: 18px;
+    height: 18px;
   }
 }
