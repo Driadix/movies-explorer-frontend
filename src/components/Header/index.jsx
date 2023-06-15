@@ -25,7 +25,7 @@ const Header = ({isIntroPage = false}) => {
     
     <header className={`header${isIntroPage ? ' header_theme_gray' : ''}`}>
       <Container>
-      <div className="header__flex-container">
+      <div className={`header__flex-container${isBurgerOpened ? ' header__flex-container-burger' : ''}`}>
       <img onClick={() => navigate('/')} src={logo} alt="Site logo" className="header__logo" />
       <nav className="header__content">
         {isIntroPage ?
@@ -45,7 +45,7 @@ const Header = ({isIntroPage = false}) => {
                 onClick={() => setIsBurgerOpened(false)}
                 className={`header__burger-btn-close${isBurgerOpened ? ' header__burger-btn-close_visible' : ''}`}>
                 </button>
-                <HeaderList isBurger={isBurgerOpened}/>
+                <HeaderList isBurger={isBurgerOpened} setIsBurger={setIsBurgerOpened}/>
               </div>
               </>
           )
