@@ -1,0 +1,38 @@
+@use '../../styles/' as *;
+
+.auth-input__label {
+  display: inline-block;
+  font-size: $fs-small-0;
+  line-height: $base-line-height;
+  color: $secondary-color;
+  margin-bottom: 5px;
+}
+
+.auth-input__field {
+  @include input-reset;
+  position: relative;
+  background-color: transparent;
+  font-size: $fs-primary;
+  line-height: $base-line-height;
+  width: 100%;
+  display: block;
+  padding-bottom: 9px;
+  border-bottom: 1px solid $gray-base-color;
+}
+
+.auth-input__field:invalid:not(:placeholder-shown) {
+  border-color: $reaction-color;
+}
+
+.auth-input__field:valid:not(:placeholder-shown) {
+  border-color: $primary-color;
+}
+
+.auth-input__error {
+  position: absolute;
+  top: 6px;
+  left: 0;
+  color: $reaction-color;
+  font-size: $fs-small-0;
+  visibility: hidden;
+}

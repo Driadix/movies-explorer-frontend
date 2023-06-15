@@ -1,0 +1,54 @@
+@use '../../styles/' as *;
+
+.auth-button {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: auto;
+  padding-bottom: 70px;
+
+  @include media-q($breakpoint-medium) {
+    padding-bottom: 50px;
+  }
+  @include media-q($breakpoint-small) {
+    padding-bottom: 30px;
+  }
+}
+
+.auth-button__submit {
+  @include btn-reset;
+  background: $primary-color;
+  border-radius: 3px;
+  padding: 13px 0 15px;
+  font-size: $fs-primary;
+  font-weight: $fw-medium;
+  line-height: $base-line-height;
+  color: #ffffff;
+
+  @include media-q($breakpoint-small) {
+    font-size: $fs-small-2;
+  }
+}
+
+.auth-button__text {
+  @include text-reset;
+  text-align: center;
+  font-size: $fs-primary;
+
+  @include media-q($breakpoint-small) {
+    font-size: $fs-small-2;
+  }
+}
+
+.auth-button__action-link {
+  @include link-reset;
+  padding-left: 6px;
+  color: $primary-color;
+  font-size: $fs-primary;
+  cursor: pointer;
+
+  @include media-q($breakpoint-small) {
+    font-size: $fs-small-2;
+  }
+}

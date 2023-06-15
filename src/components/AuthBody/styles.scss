@@ -1,0 +1,9 @@
+@use '../../styles/' as *;
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+  padding-bottom: 10px;
+}
