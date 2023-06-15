@@ -20,7 +20,7 @@
   left: 0;
   bottom: 0;
   right: 0;
-  background-color: $green-accent-color;
+  background-color: $gray-base-color;
   border-radius: 20px;
 
   &:before {
@@ -30,12 +30,17 @@
     height: 10px;
     left: 2px;
     bottom: 2px;
-    background-color: #ffffff;
+    background-color: $background-gray-light-color;
     border-radius: 50%;
     transition: transform .5s ease-out;
   }
 }
 
+.toggle__checkbox:checked + .toggle__slider{
+  background-color: $green-accent-color;
+}
+
 .toggle__checkbox:checked + .toggle__slider:before {
+  background-color: #ffffff;
   transform: translateX(20px);
 }
