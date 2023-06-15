@@ -1,0 +1,131 @@
+@use '../../styles/' as *;
+
+.profile {
+  padding-top: 74px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 120px;
+
+  @include media-q($breakpoint-medium) {
+    padding-top: 236px;
+    gap: 95px;
+  }
+  @include media-q($breakpoint-small) {
+    padding-top: 70px;
+    gap: 80px;
+    padding-inline: 30px;
+  }
+}
+
+.profile__title {
+  @include text-reset;
+  text-align: center;
+  font-size: $fs-title;
+  font-weight: $fw-medium;
+  line-height: $base-line-height;
+}
+
+.profile__form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  flex-basis: 100%;
+  max-width: 410px;
+}
+
+.profile__input-area {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+  padding-bottom: 15px;
+}
+
+.profile__input-row {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  padding-bottom: 16px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    display: block;
+    top: 30px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: $gray-base-color;
+  }
+}
+
+.profile__label {
+  font-size: $fs-small-1;
+  font-weight: $fw-medium;
+  line-height: $base-line-height;
+}
+
+.profile__input {
+  @include input-reset;
+  text-align: right;
+  background-color: transparent;
+  font-size: $fs-small-1;
+  font-weight: $fw-regular;
+  line-height: $base-line-height;
+  color: #000000;
+
+  &::placeholder {
+    color: #000000;
+    opacity: 1;
+  }
+}
+
+.profile__button-area {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 200px;
+
+  @include media-q($breakpoint-medium) {
+    margin-top: 130px;
+  }
+  @include media-q($breakpoint-small) {
+    margin-top: 300px;
+  }
+}
+
+.profile__edit-btn {
+  @include btn-reset;
+  font-size: $fs-small-3;
+  font-weight: $fw-medium;
+  line-height: $base-line-height;
+
+  @include media-q($breakpoint-small) {
+    font-size: $fs-small-2;
+  }
+}
+
+.profile__logout-btn {
+  @include btn-reset;
+  font-size: $fs-small-3;
+  line-height: $base-line-height;
+  color: $primary-color;
+
+  @include media-q($breakpoint-small) {
+    font-size: $fs-small-2;
+  }
+}
+
+.profile__save-btn {
+  @include btn-reset;
+  background-color: $primary-color;
+  border-radius: 3px;
+  font-size: $fs-primary;
+  padding: 13px 0 15px 0;
+  color: #ffffff;
+}
+
+.profile__error {
+  text-align: center;
+  color: $reaction-color;
+}

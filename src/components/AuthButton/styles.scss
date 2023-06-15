@@ -35,10 +35,6 @@
   @include text-reset;
   text-align: center;
   font-size: $fs-primary;
-
-  @include media-q($breakpoint-small) {
-    font-size: $fs-small-2;
-  }
 }
 
 .auth-button__action-link {
@@ -47,8 +43,4 @@
   color: $primary-color;
   font-size: $fs-primary;
   cursor: pointer;
-
-  @include media-q($breakpoint-small) {
-    font-size: $fs-small-2;
-  }
 }
