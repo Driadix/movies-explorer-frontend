@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import logo from '../../images/logo.svg'
+import logo from '../../images/logo-min.svg'
 import Container from '../Container';
 import HeaderList from './HeaderList';
 import './styles.scss'
@@ -31,8 +31,8 @@ const Header = ({isIntroPage = false}) => {
         {isIntroPage ?
           (
           <ul className="header__list-intro">
-            <li className="header__item"><Link to='signup' className="header__register-button">Регистрация</Link></li>
-            <li className="header__item"><Link to='signin' className="header__login-button">Войти</Link></li>
+            <li className="header__item"><Link to='/signup' className="header__register-button">Регистрация</Link></li>
+            <li className="header__item"><Link to='/signin' className="header__login-button">Войти</Link></li>
           </ul>
           ):(
             <>

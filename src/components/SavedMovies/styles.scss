@@ -1,0 +1,12 @@
+@use '../../styles/' as *;
+
+.saved-movies {
+  padding-bottom: 250px;
+
+  @include media-q($breakpoint-medium) {
+    padding-bottom: 170px;
+  }
+  @include media-q($breakpoint-small) {
+    padding-bottom: 165px;
+  }
+}

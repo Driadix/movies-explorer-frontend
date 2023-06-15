@@ -1,5 +1,5 @@
 import React from 'react'
-import profilePicture from '../../images/photo.png'
+import profilePicture from '../../images/photo-min.png'
 import './styles.scss'
 
 const AboutMe = () => {
@@ -17,7 +17,7 @@ const AboutMe = () => {
           </div>
           <a href="https://github.com/Driadix" target='blank' className="about-me__info-link">Github</a>
         </div>
-        <img src={profilePicture} alt="my image" className="about-me__image" />
+        <img src={profilePicture} alt="profile" className="about-me__image" />
       </div>
     </section>
   )

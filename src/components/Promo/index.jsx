@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from '../../images/landing-logo.svg'
+import logo from '../../images/landing-logo-min.svg'
 import Container from '../Container'
 import './styles.scss'
 

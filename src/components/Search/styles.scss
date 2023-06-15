@@ -1,0 +1,130 @@
+@use '../../styles/' as *;
+
+.search {
+  padding: 70px 0 80px;
+
+  @include media-q($breakpoint-medium) {
+    padding: 80px 0 120px;
+  }
+  @include media-q($breakpoint-small) {
+    padding-bottom: 56px;
+  }
+}
+
+.search__container {
+  display: flex;
+  align-items: center;
+  background: $background-gray-light-color;
+  border-radius: 9px;
+  justify-content: space-between;
+
+  @include media-q($breakpoint-small) {
+    flex-direction: column;
+    background-color: $background-main-color;
+  }
+}
+
+.search__main {
+  display: flex;
+  flex-basis: 100%;
+  align-items: center;
+  justify-content: space-between;
+
+  @include media-q($breakpoint-small) {
+    width: 100%;
+    background-color: $background-gray-light-color;
+    border-radius: 9px;
+  }
+}
+
+.search__input-container {
+  display: flex;
+  flex-basis: 100%;
+}
+
+.search__input-icon {
+  padding: 20px 10px 20px 20px;
+
+  @include media-q($breakpoint-small) {
+    display: none;
+  }
+}
+
+.search__input {
+  @include input-reset;
+  display: block;
+  width: 100%;
+  max-width: 740px;
+  padding: 25px 0;
+  background-color: $background-gray-light-color;
+  font-size: $fs-medium;
+  color: $secondary-color;
+
+  @include media-q($breakpoint-small) {
+    padding: 25px 0 25px 19px;
+    border-radius: 9px;
+    font-size: $fs-primary;
+  }
+}
+
+.search__input-button {
+  @include btn-reset;
+  box-sizing: border-box;
+  display: block;
+  position: relative;
+  width: 50px;
+  height: 34px;
+  background: url('../../images/find-icon-min.svg') center no-repeat;
+  margin: 0 60px 0 50px;
+
+  @include media-q($breakpoint-medium) {
+    margin: 0 40px 0 45px;
+  }
+
+  @include media-q($breakpoint-small) {
+    margin: 0 20px 0 40px;
+  }
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 75px;
+    width: 1px;
+    height: 40px;
+    background-color: $gray-base-color;
+
+    @include media-q($breakpoint-medium) {
+      left: 55px;
+    }
+    @include media-q($breakpoint-small) {
+      display: none;
+    }
+  }
+}
+
+.search__toggle {
+  display: flex;
+  align-items: center;
+
+  @include media-q($breakpoint-small) {
+    margin-top: 46px;
+    gap: 15px;
+  }
+}
+
+.search__toggle-name {
+  @include text-reset;
+  padding: 27px 30px 27px 14px;
+  font-size: $fs-small-3;
+  line-height: $base-line-height;
+
+  @include media-q($breakpoint-medium) {
+    padding-right: 20px;
+  }
+  @include media-q($breakpoint-small) {
+    font-size: $fs-small-1;
+    padding: 0;
+  }
+}

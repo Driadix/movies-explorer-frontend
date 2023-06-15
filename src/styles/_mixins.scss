@@ -31,6 +31,13 @@
   @include base-transition;
 }
 
+@mixin input-reset() {
+  outline: none;
+  font-size: inherit;
+  padding: 0;
+  border: none;
+}
+
 @mixin base-transition() {
   &:hover {
     opacity: 0.4;
