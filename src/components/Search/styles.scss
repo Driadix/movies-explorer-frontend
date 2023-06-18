@@ -67,6 +67,14 @@
   }
 }
 
+.search__input:invalid:not(:placeholder-shown) {
+  outline-color: $reaction-color;
+}
+
+.search__input:valid:not(:placeholder-shown) {
+  outline-color: $primary-color;
+}
+
 .search__input-button {
   @include btn-reset;
   box-sizing: border-box;

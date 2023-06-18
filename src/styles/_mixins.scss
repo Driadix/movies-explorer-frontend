@@ -36,6 +36,11 @@
   font-size: inherit;
   padding: 0;
   border: none;
+
+  &:focus {
+    outline: 1px solid #A0A0A0;
+    border-radius: 6px;
+  }
 }
 
 @mixin base-transition() {
