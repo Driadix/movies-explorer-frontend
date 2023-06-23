@@ -1,7 +1,8 @@
 import React from 'react';
 import './App.scss';
 import { Routes, Route, useNavigate } from 'react-router-dom';
-import ProtectedRoute from './components/ProtectedRoute'
+import { CurrentUserContext } from './contexts/CurrentUserContext';
+import ProtectedRoute from './components/ProtectedRoute';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Register from './components/Register'
@@ -15,6 +16,7 @@ import NotFound from './components/NotFound';
 function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
+  const [currentUser, setCurrentUser] = React.useState({})
 
   const handleLogin = () => {
 
@@ -25,6 +27,7 @@ function App() {
   }
   
   return (
+    <CurrentUserContext.Provider value={currentUser}>
     <div className="App">
       <Routes>
         <Route path='/' element={<><Header isIntroPage={true}/><Main/><Footer/></>} />
@@ -41,6 +44,7 @@ function App() {
             element={<NotFound isLoading={isLoading} />} />
       </Routes>
     </div>
+    </CurrentUserContext.Provider>
   );
 }
 
