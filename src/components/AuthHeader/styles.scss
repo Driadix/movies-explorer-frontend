@@ -1,0 +1,28 @@
+@use '../../styles/' as *;
+
+.auth-header {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 70px 0 40px;
+
+  @include media-q($breakpoint-small) {
+    padding-bottom: 80px;
+    align-items: center;
+    gap: 50px;
+  }
+}
+
+.auth-header__logo {
+  @include base-transition;
+  cursor: pointer;
+  max-width: 38px;
+  min-height: 38px;
+}
+
+.auth-header__title {
+  @include text-reset;
+  font-size: $fs-title;
+  font-weight: $fs-medium;
+  line-height: $base-line-height;
+}

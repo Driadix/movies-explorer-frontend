@@ -1,0 +1,14 @@
+@use '../../styles/' as *;
+
+.container {
+  margin: 0 auto;
+  width: calc(100% - 70px * 2);
+
+  @include media-q($breakpoint-medium) {
+    width: calc(100% - 30px * 2);
+  }
+
+  @include media-q($breakpoint-small) {
+    width: calc(100% - 10px * 2);
+  }
+}

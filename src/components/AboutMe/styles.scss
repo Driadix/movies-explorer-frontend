@@ -1,0 +1,114 @@
+@use '../../styles/' as *;
+
+.about-me {
+  padding: 110px 0 100px 0;
+
+  @include media-q($breakpoint-medium) {
+    padding: 90px 0;
+  }
+  @include media-q($breakpoint-small) {
+    padding: 70px 0;
+  }
+}
+
+.about-me__title {
+  @include intro-section-title;
+  font-size: $fs-title * 0.92;
+}
+
+.about-me__container {
+  display: flex;
+  gap: 270px;
+  margin-top: 90px;
+
+  @include media-q($breakpoint-large) {
+    gap: 130px;
+  }
+  @include media-q($breakpoint-medium) {
+    gap: 50px;
+  }
+  @include media-q($breakpoint-small) {
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+  }
+}
+
+.about-me__info-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @include media-q($breakpoint-small) {
+    gap: 40px;
+  }
+}
+
+.about-me__info-text-area {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.about-me__info-title {
+  @include text-reset;
+  letter-spacing: -0.04em;
+  font-size: $fs-main-title;
+  line-height: $base-line-height;
+
+  @include media-q($breakpoint-medium) {
+    font-size: $fs-main-title-medium;
+  }
+  @include media-q($breakpoint-small) {
+    font-size: $fs-main-title-small;
+  }
+}
+
+.about-me__info-subtitle {
+  @include text-reset;
+  mix-blend-mode: normal;
+  font-weight: $fw-medium;
+  font-size: $fs-medium;
+  line-height: $base-line-height;
+
+  @include media-q($breakpoint-medium) {
+    font-size: $fs-small-2;
+  }
+  @include media-q($breakpoint-small) {
+    font-size: $fs-small-1;
+  }
+}
+
+.about-me__info-text {
+  @include text-reset;
+  mix-blend-mode: normal;
+  font-size: $fs-primary;
+  line-height: $base-line-height * 1.33;
+
+  @include media-q($breakpoint-medium) {
+    font-size: $fs-small-2;
+  }
+  @include media-q($breakpoint-small) {
+    font-size: $fs-small-1;
+  }
+}
+
+.about-me__info-link {
+  @include link-reset;
+  font-weight: $fw-medium;
+  font-size: $fs-primary;
+  line-height: $base-line-height;
+}
+
+.about-me__image {
+  max-width: 255px;
+  height: 307px;
+  border-radius: 10px;
+
+  @include media-q($breakpoint-small) {
+    max-width: 292px;
+    height: 352px;
+    aspect-ratio: 16/9;
+  }
+}

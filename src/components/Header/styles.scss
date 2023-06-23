@@ -1,0 +1,156 @@
+@use '../../styles/' as *;
+
+.header {
+  min-height: 74px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header_theme_gray {
+  background-color: $background-gray-color;
+}
+
+.header__flex-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__flex-container-burger {
+  &::after {
+    content: '';
+    position: fixed;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    opacity: 0.3;
+  }
+}
+
+.header__logo {
+  @include base-transition;
+  cursor: pointer;
+}
+
+.header__list-intro {
+  @include list-reset;
+  display: flex;
+  font-size: $fs-primary;
+}
+
+.header__register-button {
+  @include link-button;
+  font-weight: $fw-medium;
+  font-size: $fs-small-2;
+  margin-right: 30px;
+  line-height: $base-line-height * 1.101;
+  min-height: 32px;
+  
+  @include media-q($breakpoint-small) {
+    margin-right: 14px;
+    font-size: $fs-small-0;
+  }
+}
+
+.header__login-button {
+  @include link-button;
+  color: #ffffff;
+  padding: 8px 20px;
+  background: #3456F3;
+  border-radius: 3px;
+  font-weight: $fw-medium;
+  font-size: $fs-small-2;
+  line-height: $base-line-height * 1.101;
+
+  @include media-q($breakpoint-small) {
+    padding: 5px 12px;
+    font-size: $fs-small-0;
+  }
+}
+
+.header__burger {
+  display: flex;
+  transition: all .3s ease-out;
+}
+
+.header__burger_opened {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  max-width: 520px;
+  height: 100%;
+  z-index: 10;
+  padding: 160px 0 100px;
+  background-color: $background-main-color;
+  flex-direction: column;
+  align-items: center;
+
+  @include media-q($breakpoint-small) {
+    padding: 145px 0 55px;
+  }
+}
+
+.header__burger-btn-open {
+  @include btn-reset;
+  display: none;
+  position: relative;
+  width: 30px;
+  height: 3px;
+  background: #000000;
+  
+  @include media-q($breakpoint-medium) {
+    display: block;
+  }
+  @include media-q($breakpoint-small) {
+    font-size: $fs-medium;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 7px;
+    width: 30px;
+    height: 3px;
+    background: #000000;
+  }
+  &:before {
+    content: '';
+    position: absolute;
+    top: 7px;
+    left: 0;
+    width: 30px;
+    height: 3px;
+    background: #000000;
+  }
+}
+
+.header__burger-btn-open_non-visible {
+  display: none;
+}
+
+.header__burger-btn-close {
+  display: none;
+}
+
+.header__burger-btn-close_visible {
+  @include btn-reset;
+  display: block;
+  position: absolute;
+  top: 23px;
+  right: 23px;
+
+  &:after {
+    content: "";
+    display: block;
+    background: url('../../images/close-icon-min.svg') no-repeat center;
+    width: 100%;
+    width: 18px;
+    height: 18px;
+  }
+}

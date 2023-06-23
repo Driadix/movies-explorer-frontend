@@ -1,0 +1,74 @@
+@mixin media-q($breakpoint) {
+  @media screen and (max-width: $breakpoint) {
+    @content;
+  }
+}
+
+@mixin btn-reset() {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  cursor: pointer;
+  @include base-transition;
+}
+
+@mixin text-reset() {
+  padding: 0;
+  margin: 0;
+  font-weight: 400;
+}
+
+@mixin list-reset() {
+  @include text-reset;
+  list-style-type: none;
+}
+
+@mixin link-reset() {
+  text-decoration: none;
+  color: inherit;
+  @include base-transition;
+}
+
+@mixin input-reset() {
+  outline: none;
+  font-size: inherit;
+  padding: 0;
+  border: none;
+
+  &:focus {
+    outline: 1px solid #A0A0A0;
+    border-radius: 6px;
+  }
+}
+
+@mixin base-transition() {
+  &:hover {
+    opacity: 0.4;
+    transition: opacity .6s linear;
+  }
+}
+
+@mixin intro-section-title() {
+  @include text-reset;
+  display: block;
+  position: relative;
+
+  &:after {
+    content: '';
+    position: absolute;
+    margin-top: 23px;
+    display: block;
+    height: 1px;
+    width: 100%;
+    background-color: #000000;
+  }
+}
+
+@mixin link-button() {
+  @include link-reset;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+}

@@ -1,0 +1,67 @@
+@use '../../styles/' as *;
+
+.portfolio {
+  padding-bottom: 100px;
+
+  @include media-q($breakpoint-medium) {
+    padding-bottom: 68px;
+  }
+  @include media-q($breakpoint-small) {
+    padding-bottom: 48px;
+  }
+}
+
+.portfolio__title {
+  margin-bottom: 50px;
+  mix-blend-mode: normal;
+  font-size: $fs-medium;
+  line-height: $base-line-height;
+  color: $secondary-color;
+
+  @include media-q($breakpoint-small) {
+    margin-bottom: 40px;
+    font-size: $fs-primary;
+  }
+}
+
+.portfolio__list {
+  @include list-reset;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.portfolio__item {
+  display: flex;
+  justify-content: space-between;
+
+  border-bottom: 1px solid $gray-base-color;
+}
+
+.portfolio__item-link {
+  @include link-reset;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  letter-spacing: -0.04em;
+  font-size: $fs-main-title-small;
+  line-height: $base-line-height * 1.4;
+
+  @include media-q($breakpoint-medium) {
+    font-size: $fs-main-title-small * 0.935;
+  }
+  @include media-q($breakpoint-small) {
+    font-size: $fs-medium;
+  }
+
+  &::after {
+    content: '';
+    display: block;
+    margin-top: 20px;
+    background: url('../../images/link-arrow-min.svg') no-repeat;
+    width: 16px;
+    height: 16px;
+  }
+}

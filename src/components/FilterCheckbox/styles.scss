@@ -1,0 +1,46 @@
+@use '../../styles/' as *;
+
+.toggle__switch {
+  position: relative;
+  display: inline-block;
+  width: 34px;
+  height: 14px;
+}
+
+.toggle__checkbox {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle__slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: $gray-base-color;
+  border-radius: 20px;
+
+  &:before {
+    position: absolute;
+    content: '';
+    width: 10px;
+    height: 10px;
+    left: 2px;
+    bottom: 2px;
+    background-color: $background-gray-light-color;
+    border-radius: 50%;
+    transition: transform .5s ease-out;
+  }
+}
+
+.toggle__checkbox:checked + .toggle__slider{
+  background-color: $green-accent-color;
+}
+
+.toggle__checkbox:checked + .toggle__slider:before {
+  background-color: #ffffff;
+  transform: translateX(20px);
+}

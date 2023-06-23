@@ -1,0 +1,114 @@
+@use '../../styles/' as *;
+
+.techs {
+  padding: 100px 0;
+  background-color: $background-gray-light-color;
+
+  @include media-q($breakpoint-medium) {
+    padding: 90px 0;
+  }
+  @include media-q($breakpoint-small) {
+    padding: 70px 0;
+  }
+}
+
+.techs__title {
+  @include intro-section-title;
+  font-size: $fs-title * 0.92;
+}
+
+.techs__container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 114px;
+  gap: 100px;
+
+  @include media-q($breakpoint-medium) {
+    margin-top: 104px;
+    gap: 83px;
+  }
+  @include media-q($breakpoint-small) {
+    margin-top: 89px;
+    gap: 50px;
+  }
+}
+
+.techs__info-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 26px;
+
+  @include media-q($breakpoint-medium) {
+    gap: 22px;
+  }
+  @include media-q($breakpoint-small) {
+    gap: 24px;
+  }
+}
+
+.techs__info-title {
+  @include text-reset;
+  letter-spacing: -0.04em;
+  font-size: $fs-main-title;
+  line-height: $base-line-height;
+  text-align: center;
+
+  @include media-q($breakpoint-small) {
+    font-size: $fs-main-title-small;
+  }
+}
+
+.techs__info-text {
+  @include text-reset;
+  max-width: 460px;
+  font-size: $fs-primary;
+  line-height: $base-line-height;
+  text-align: center;
+
+  @include media-q($breakpoint-medium) {
+    font-size: $fs-small-2;
+  }
+  @include media-q($breakpoint-small) {
+    font-size: $fs-small-1;
+  }
+}
+
+.techs__list {
+  @include list-reset;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 90px);
+  justify-content: center;
+  gap: 10px;
+
+  @include media-q($breakpoint-medium) {
+    grid-template-columns: repeat(auto-fit, 94px);
+  }
+}
+
+.techs__item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #E8E8E8;
+  border-radius: 10px;
+  min-width: 94px;
+  min-height: 60px;
+
+  @include media-q($breakpoint-medium) {
+    min-width: 84px;
+    min-height: 57px;
+  }
+}
+
+.techs__item-text {
+  @include text-reset;
+  letter-spacing: -0.04em;
+  font-size: $fs-primary;
+  line-height: $base-line-height;
+
+  @include media-q($breakpoint-medium) {
+    font-size: $fs-small-2;
+  }
+}
