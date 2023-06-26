@@ -136,3 +136,17 @@
     padding: 0;
   }
 }
+
+.search__input-error {
+  display: block;
+  color: $reaction-color;
+  font-size: $fs-small-3;
+  padding-top: 10px;
+
+  @include media-q($breakpoint-small) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: $fs-small-2;
+  }
+}

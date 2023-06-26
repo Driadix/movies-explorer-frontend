@@ -24,7 +24,7 @@ export const addMyMovie = (movie) => {
       duration: movie.duration,
       year: movie.year,
       description: movie.description,
-      image: MOVIES_API_URL + movie.image,
+      image: MOVIES_API_URL + movie.image.url,
       trailerLink: movie.trailerLink,
       thumbnail: MOVIES_API_URL + movie.thumbnail,
       movieId: movie.movieId,

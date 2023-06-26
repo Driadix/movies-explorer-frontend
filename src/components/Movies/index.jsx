@@ -1,46 +1,41 @@
 import React from 'react'
-import card1 from '../../images/card-1.png'
-import card2 from '../../images/card-2.png'
+import { getMovies } from '../../utils/MoviesApi'
 import Container from '../Container'
 import Search from '../Search'
 import MoviesCardList from '../MoviesCardList'
+import Preloader from '../Preloader'
 import './styles.scss'
 
-const Movies = () => {
+const Movies = ({isLoading, setIsLoading}) => {
+  const [searchedMvoies, setSearchedMvoies] = React.useState([])
+  const [resultPlaceholder, setResultPlaceholder] = React.useState('')
+  const [isSubmitted, setIsSubmitted] = React.useState(false);
 
-  const movies = [
-    {
-      image: card1,
-      title: 'Киноальманах «100 лет дизайна»',
-      text: '1ч 3м',
-      isLiked: false,
-    },
-    {
-      image: card1,
-      title: 'Дженис: Маленькая девочка грустит',
-      text: '1ч 42м',
-      isLiked: true,
-    },
-    {
-      image: card2,
-      title: 'Дженис: Маленькая девочка грустит',
-      text: '1ч 42м',
-      isLiked: false,
-    },
-    {
-      image: card2,
-      title: 'Дженис: Маленькая девочка грустит',
-      text: '1ч 42м',
-      isLiked: false,
-    },
-  ]
+  const handleSearchSubmit = async () => {
+    try {
+    const movies = await getMovies();
+    return movies;
+    }
+    catch (error) {
+      console.log(error);
+      setResultPlaceholder('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз')
+    }
+  }
 
   return (
     <section className="movies">
       <Container>
-        <Search />
-        <MoviesCardList movies={movies}/>
-        <button className="movies__button">Ещё</button>
+        <Search
+          setSearchedMvoies={setSearchedMvoies}
+          handleSearchSubmit={handleSearchSubmit}
+          setIsLoading={setIsLoading}
+          setIsSubmitted={setIsSubmitted}
+          />
+          {isSubmitted && (isLoading ? (<Preloader/>) : 
+          ((searchedMvoies && searchedMvoies.length>0) 
+          ? (<MoviesCardList movies={searchedMvoies}/>) 
+          : (<h1 className='movies__result-placeholder'>{resultPlaceholder ? resultPlaceholder : 'Ничего не найдено'}</h1>)))}
+        {isSubmitted && !isLoading && <button className="movies__button">Ещё</button>}
       </Container>
     </section>
   )

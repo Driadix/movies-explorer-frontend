@@ -22,3 +22,19 @@
     margin-top: 76px;
   }
 }
+
+.movies__result-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: $fw-medium;
+  font-size: $fs-primary;
+  text-align: center;
+
+  @include media-q($breakpoint-medium) {
+    font-size: $fs-small-3;
+  }
+  @include media-q($breakpoint-small) {
+    font-size: $fs-small-2;
+  }
+}
