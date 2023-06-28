@@ -7,9 +7,11 @@ import Preloader from '../Preloader'
 import './styles.scss'
 
 const Movies = ({isLoading, setIsLoading}) => {
-  const [searchedMvoies, setSearchedMvoies] = React.useState([])
+  const [searchedMovies, setSearchedMovies] = React.useState([])
   const [resultPlaceholder, setResultPlaceholder] = React.useState('')
   const [isSubmitted, setIsSubmitted] = React.useState(false);
+
+
 
   const handleSearchSubmit = async () => {
     try {
@@ -26,16 +28,18 @@ const Movies = ({isLoading, setIsLoading}) => {
     <section className="movies">
       <Container>
         <Search
-          setSearchedMvoies={setSearchedMvoies}
+          setSearchedMovies={setSearchedMovies}
           handleSearchSubmit={handleSearchSubmit}
           setIsLoading={setIsLoading}
           setIsSubmitted={setIsSubmitted}
           />
           {isSubmitted && (isLoading ? (<Preloader/>) : 
-          ((searchedMvoies && searchedMvoies.length>0) 
-          ? (<MoviesCardList movies={searchedMvoies}/>) 
+          ((searchedMovies && searchedMovies.length>0) 
+          ? (<MoviesCardList
+            movies={searchedMovies}
+            isSubmitted={isSubmitted}
+            isLoading={isLoading}/>)
           : (<h1 className='movies__result-placeholder'>{resultPlaceholder ? resultPlaceholder : 'Ничего не найдено'}</h1>)))}
-        {isSubmitted && !isLoading && <button className="movies__button">Ещё</button>}
       </Container>
     </section>
   )

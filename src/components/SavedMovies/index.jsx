@@ -1,45 +1,44 @@
 import React from 'react'
 import Container from '../Container'
 import Search from '../Search'
-import card1 from '../../images/card-1.png'
-import card2 from '../../images/card-2.png'
 import MoviesCardList from '../MoviesCardList'
+import Preloader from '../Preloader'
+import { getMyMovies } from '../../utils/MainApi'
 import './styles.scss'
 
-const SavedMovies = () => {
+const SavedMovies = ({isLoading, setIsLoading}) => {
+  const [searchedMovies, setSearchedMovies] = React.useState([])
+  const [resultPlaceholder, setResultPlaceholder] = React.useState('')
+  const [isSubmitted, setIsSubmitted] = React.useState(false);
 
-  const movies = [
-    {
-      image: card1,
-      title: 'Киноальманах «100 лет дизайна»',
-      text: '1ч 3м',
-      isLiked: false,
-    },
-    {
-      image: card1,
-      title: 'Дженис: Маленькая девочка грустит',
-      text: '1ч 42м',
-      isLiked: true,
-    },
-    {
-      image: card2,
-      title: 'Дженис: Маленькая девочка грустит',
-      text: '1ч 42м',
-      isLiked: false,
-    },
-    {
-      image: card2,
-      title: 'Дженис: Маленькая девочка грустит',
-      text: '1ч 42м',
-      isLiked: false,
-    },
-  ]
+  const handleSearchSubmit = async () => {
+    try {
+    const movies = await getMyMovies();
+    return movies;
+    }
+    catch (error) {
+      console.log(error);
+      setResultPlaceholder('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз')
+    }
+  }
 
   return (
     <section className="saved-movies">
       <Container>
-        <Search />
-        <MoviesCardList movies={movies} isSaved={true}/>
+      <Search
+          setSearchedMovies={setSearchedMovies}
+          handleSearchSubmit={handleSearchSubmit}
+          setIsLoading={setIsLoading}
+          setIsSubmitted={setIsSubmitted}
+          />
+        {isSubmitted && (isLoading ? (<Preloader/>) : 
+          ((searchedMovies && searchedMovies.length>0) 
+          ? (<MoviesCardList
+            movies={searchedMovies}
+            isSubmitted={isSubmitted}
+            isLoading={isLoading}
+            isSaved={true}/>)
+          : (<h1 className='movies__result-placeholder'>{resultPlaceholder ? resultPlaceholder : 'Ничего не найдено'}</h1>)))}
       </Container>
     </section>
   )

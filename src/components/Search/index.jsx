@@ -5,7 +5,7 @@ import useForm from '../../hooks/useForm'
 import { filterSearchSubmit } from '../../utils/filter'
 import './styles.scss'
 
-const Search = ({setSearchedMvoies, handleSearchSubmit, setIsLoading, setIsSubmitted}) => {
+const Search = ({setSearchedMovies, handleSearchSubmit, setIsLoading, setIsSubmitted}) => {
   const [isSmallMovies, setIsSmallMovies] = React.useState(false)
   const {values, errors, handleChange } = useForm()
   
@@ -15,7 +15,7 @@ const Search = ({setSearchedMvoies, handleSearchSubmit, setIsLoading, setIsSubmi
     setIsLoading(true);
     setTimeout(async () => {
       const movies = await handleSearchSubmit();
-      if(movies && movies.length > 0) setSearchedMvoies(filterSearchSubmit(values.search, movies, isSmallMovies));
+      if(movies && movies.length > 0) setSearchedMovies(filterSearchSubmit(values.search, movies, isSmallMovies));
       setIsLoading(false);
     }, 1000);
   }
