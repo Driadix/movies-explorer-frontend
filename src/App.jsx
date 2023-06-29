@@ -12,40 +12,106 @@ import Movies from './components/Movies';
 import Profile from './components/Profile';
 import SavedMovies from './components/SavedMovies';
 import NotFound from './components/NotFound';
+import { getMyUser, login } from './utils/MainApi';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
-  const [currentUser, setCurrentUser] = React.useState({})
+  const [currentUser, setCurrentUser] = React.useState({
+    name: '',
+    email: ''
+  })
+  const navigate = useNavigate();
 
-  const handleLogin = () => {
-
+  const handleAuthorize = async () => {
+    if (localStorage.getItem('token')) {
+      try {
+        const user = await getMyUser();
+        if (user) {
+          setCurrentUser({
+            name: user.name,
+            email: user.email
+          });
+          setIsLoggedIn(true);
+        }
+      }
+      catch (error) {
+        setIsLoggedIn(false)
+        navigate('/');
+      }
+    }
   }
 
-  const handleRegister = () => {
+  React.useEffect(() => {
+    console.log(isLoggedIn)
+  }, [isLoggedIn])
 
+  const handleLogin = async (email, password, setServerError) => {
+    try {
+      const newTokenObject = await login(email, password)
+      const newToken = newTokenObject.token;
+      if (newToken) {
+        localStorage.setItem('token', newToken)
+        await handleAuthorize();
+      }
+    }
+    catch (error) {
+      setServerError(error)
+    }
   }
-  
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
-    <div className="App">
-      <Routes>
-        <Route path='/' element={<><Header isIntroPage={true}/><Main/><Footer/></>} />
-        <Route
-            path="/signup"
-            element={<Register onRegister={handleRegister} isLoading={isLoading} />}
+      <div className="App">
+        <Routes>
+          <Route path='/' element={<><Header isIntroPage={true} /><Main /><Footer /></>} />
+          <Route path="/signup" element={<Register />} />
+          <Route path="/signin" element={<Login handleLogin={handleLogin} />} />
+          <Route path="/movies" element={
+            <>
+              <Header />
+              <ProtectedRoute
+                component={Movies}
+                isLoggedIn={isLoggedIn}
+                isLoading={isLoading}
+                setIsLoading={setIsLoading}
+              />
+              <Footer />
+            </>
+          }
           />
-          <Route path="/signin" element={<Login onLogin={handleLogin} isLoading={isLoading} />} />
-          <Route path="/movies" element={<><Header/><Movies isLoading={isLoading} setIsLoading={setIsLoading} /><Footer/></>} />
-          <Route path="/saved-movies" element={<><Header /><SavedMovies isLoading={isLoading} /><Footer/></>} />
-          <Route path="/profile" element={<><Header /><Profile isLoading={isLoading} /></>} />
+          <Route path="/saved-movies" element={
+            <>
+              <Header />
+              <ProtectedRoute
+                component={SavedMovies}
+                isLoggedIn={isLoggedIn}
+                isLoading={isLoading}
+                setIsLoading={setIsLoading}
+              />
+              <Footer />
+            </>
+          }
+          />
+          <Route path="/profile" element={
+            <>
+              <Header />
+              <ProtectedRoute
+                component={Profile}
+                isLoggedIn={isLoggedIn}
+              />
+            </>
+          }
+          />
           <Route
             path="*"
-            element={<NotFound isLoading={isLoading} />} />
-      </Routes>
-    </div>
+            element={<NotFound />} />
+        </Routes>
+      </div>
     </CurrentUserContext.Provider>
   );
 }
 
 export default App;
+
+

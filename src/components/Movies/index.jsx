@@ -7,16 +7,17 @@ import Preloader from '../Preloader'
 import './styles.scss'
 
 const Movies = ({isLoading, setIsLoading}) => {
+  const [allMovies, setAllMovies] = React.useState([])
   const [searchedMovies, setSearchedMovies] = React.useState([])
   const [resultPlaceholder, setResultPlaceholder] = React.useState('')
   const [isSubmitted, setIsSubmitted] = React.useState(false);
 
-
-
   const handleSearchSubmit = async () => {
     try {
-    const movies = await getMovies();
-    return movies;
+    if (allMovies && allMovies.length > 0) return allMovies;
+      const movies = await getMovies();
+      setAllMovies(movies);
+      return movies;
     }
     catch (error) {
       console.log(error);

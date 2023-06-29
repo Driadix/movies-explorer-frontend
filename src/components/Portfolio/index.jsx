@@ -5,7 +5,7 @@ const Portfolio = () => {
   return (
     <section className='portfolio'>
       <h2 className="portfolio__title">Портфолио</h2>
-      <nav portfolio__links>
+      <nav className="portfolio__links">
       <ul className="portfolio__list">
         <li className="portfolio__item">
           <a href="https://github.com/Driadix/how-to-learn" target="_blank" rel="noreferrer" className="portfolio__item-link">Статичный сайт</a>

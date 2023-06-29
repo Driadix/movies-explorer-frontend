@@ -26,9 +26,21 @@
   line-height: $base-line-height;
   color: #ffffff;
 
+  &:disabled {
+    opacity: 0.2;
+    cursor: auto;
+  }
+
   @include media-q($breakpoint-small) {
     font-size: $fs-small-2;
   }
+}
+
+.auth-button__error {
+  width: 100%;
+  color: $reaction-color;
+  font-size: $fs-small-0;
+  text-align: center;
 }
 
 .auth-button__text {

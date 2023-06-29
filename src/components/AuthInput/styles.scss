@@ -10,12 +10,12 @@
 
 .auth-input__field {
   @include input-reset;
+  display: block;
   position: relative;
   background-color: transparent;
   font-size: $fs-primary;
   line-height: $base-line-height;
   width: 100%;
-  display: block;
   padding-bottom: 9px;
   border-bottom: 1px solid $gray-base-color;
 }
@@ -29,10 +29,6 @@
 }
 
 .auth-input__error {
-  position: absolute;
-  top: 6px;
-  left: 0;
   color: $reaction-color;
   font-size: $fs-small-0;
-  visibility: hidden;
 }

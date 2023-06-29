@@ -1,31 +1,62 @@
 import React from 'react'
+import { useLocation } from 'react-router-dom'
 import FilterCheckbox from '../FilterCheckbox'
 import searchIcon from '../../images/search-icon-min.svg'
 import useForm from '../../hooks/useForm'
 import { filterSearchSubmit } from '../../utils/filter'
 import './styles.scss'
 
-const Search = ({setSearchedMovies, handleSearchSubmit, setIsLoading, setIsSubmitted}) => {
+const Search = ({setSearchedMovies, handleSearchSubmit, setIsLoading, setIsSubmitted, isSaved=false}) => {
   const [isSmallMovies, setIsSmallMovies] = React.useState(false)
+  const [localQuery, setLocalQuery] = React.useState('')
   const {values, errors, handleChange } = useForm()
-  
+  const location = useLocation();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitted(true);
     setIsLoading(true);
     setTimeout(async () => {
       const movies = await handleSearchSubmit();
-      if(movies && movies.length > 0) setSearchedMovies(filterSearchSubmit(values.search, movies, isSmallMovies));
+      if(movies && movies.length > 0) {
+        const filteredMovies = filterSearchSubmit(values.search, movies, isSmallMovies)
+        setSearchedMovies(filteredMovies);
+        if(isSaved) {
+          localStorage.setItem('saved-movie', JSON.stringify({
+            queryText: values.search,
+            movies: filteredMovies,
+            isSmall: isSmallMovies,
+          }));
+        }
+        else {
+          localStorage.setItem('movie', JSON.stringify({
+            queryText: values.search,
+            movies: filteredMovies,
+            isSmall: isSmallMovies,
+          }));
+        }
+      }
       setIsLoading(false);
     }, 1000);
   }
- 
+
   React.useEffect(() => {
-    if (localStorage.getItem(`isSmall`)) {
-      setIsSmallMovies(true);
-    } else {
-      setIsSmallMovies(false);
+    if (localStorage.getItem(`movie`) && location.pathname === '/movies') {
+      const movieObject = JSON.parse(localStorage.getItem('movie'));
+      setIsSmallMovies(movieObject.isSmall);
+      setSearchedMovies(movieObject.movies);
+      setLocalQuery(movieObject.queryText);
+      setIsSubmitted(true);
     }
+
+    if (localStorage.getItem(`saved-movie`) && location.pathname === '/saved-movies') {
+      const movieObject = JSON.parse(localStorage.getItem('saved-movie'));
+      setIsSmallMovies(movieObject.isSmall);
+      setSearchedMovies(movieObject.movies);
+      setLocalQuery(movieObject.queryText);
+      setIsSubmitted(true);
+    }
+      // eslint-disable-next-line
   }, []);
 
   return (
@@ -36,7 +67,7 @@ const Search = ({setSearchedMovies, handleSearchSubmit, setIsLoading, setIsSubmi
             <img src={searchIcon} alt="input icon" className="search__input-icon"/>
             <input
             type="text"
-            placeholder='Фильмы'
+            placeholder={localQuery || 'Фильмы'}
             className="search__input"
             name='search'
             value={values.search || ''}
@@ -44,7 +75,7 @@ const Search = ({setSearchedMovies, handleSearchSubmit, setIsLoading, setIsSubmi
             onChange={handleChange}
             required/>
           </div>
-          <button type="submit" className="search__input-button"></button>
+          <button type="submit" className="search__input-button" disabled={errors.search ? true : false}></button>
         </form>
         <div className="search__toggle">
           <FilterCheckbox isSmall={isSmallMovies} setIsSmall={setIsSmallMovies}/>

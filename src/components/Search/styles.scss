@@ -93,6 +93,11 @@
     margin: 0 20px 0 40px;
   }
 
+  &:disabled {
+    opacity: 0.2;
+    cursor: default;
+  }
+
   &::after {
     content: '';
     display: block;

@@ -1,11 +1,23 @@
 import { useState } from 'react'
-import { SEARCH_REGEXP } from '../utils/constants';
+import { SEARCH_REGEXP, TEXT_REGEXP, EMAIL_REGEXP, PASSWORD_REGEXP } from '../utils/constants';
 
 const validate = (name, value, errors, setErrors) => {
     switch (name) {
         case 'search':
             if(!SEARCH_REGEXP.test(value)) setErrors({...errors, search:'Нужно ввести ключевое слово'})
-        else setErrors({...errors, search:''})
+            else setErrors({...errors, search:''})
+        break;
+        case 'text':
+            if(!TEXT_REGEXP.test(value)) setErrors({...errors, text:'Введите валидный текст (буквы, пробелы, дефисы)'})
+            else setErrors({...errors, text:''})
+        break;
+        case 'email':
+            if(!EMAIL_REGEXP.test(value)) setErrors({...errors, email:'Введите валидный email'})
+            else setErrors({...errors, email:''})
+        break;
+        case 'password':
+            if(!PASSWORD_REGEXP.test(value)) setErrors({...errors, password:'Введите валидный пароль'})
+            else setErrors({...errors, password:''})
         break;
         default: 
         break;
