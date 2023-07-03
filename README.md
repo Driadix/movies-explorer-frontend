@@ -1,6 +1,6 @@
 ## Movies Frontend
 Frontend markup link: https://disk.yandex.ru/d/tIqlTwa-iICGBg
-
+Frontend link: https://driadix.movies.nomoredomains.rocks
 In the project directory, you can run:
 
 ### `npm start`
