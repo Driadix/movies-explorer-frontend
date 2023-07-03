@@ -1,7 +1,7 @@
 import React from 'react'
 import './styles.scss'
 
-const AuthContainer = ({children}) => {
+const AuthContainer = ({ children }) => {
   return (
     <div className="auth-container">
       {children}

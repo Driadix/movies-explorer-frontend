@@ -16,13 +16,13 @@ const Main = () => {
         <AboutProject />
       </Container>
 
-        <Techs />
-        
+      <Techs />
+
       <Container>
         <AboutMe />
         <Portfolio />
       </Container>
-      
+
     </main>
   )
 }

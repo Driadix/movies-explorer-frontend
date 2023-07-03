@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import logo from '../../images/logo-min.svg'
 import './styles.scss'
 
-const AuthHeader = ({title}) => {
+const AuthHeader = ({ title }) => {
   const navigate = useNavigate();
 
   return (

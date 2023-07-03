@@ -6,10 +6,10 @@ import useForm from '../../hooks/useForm'
 import { filterSearchSubmit } from '../../utils/filter'
 import './styles.scss'
 
-const Search = ({setSearchedMovies, handleSearchSubmit, setIsLoading, setIsSubmitted, isSaved=false}) => {
+const Search = ({ setSearchedMovies, handleSearchSubmit, setIsLoading, setIsSubmitted, isSaved = false }) => {
   const [isSmallMovies, setIsSmallMovies] = React.useState(false)
   const [localQuery, setLocalQuery] = React.useState('')
-  const {values, errors, handleChange } = useForm()
+  const { values, errors, handleChange } = useForm()
   const location = useLocation();
 
   const handleSubmit = (e) => {
@@ -18,10 +18,10 @@ const Search = ({setSearchedMovies, handleSearchSubmit, setIsLoading, setIsSubmi
     setIsLoading(true);
     setTimeout(async () => {
       const movies = await handleSearchSubmit();
-      if(movies && movies.length > 0) {
+      if (movies && movies.length > 0) {
         const filteredMovies = filterSearchSubmit(values.search, movies, isSmallMovies)
         setSearchedMovies(filteredMovies);
-        if(isSaved) {
+        if (isSaved) {
           localStorage.setItem('saved-movie', JSON.stringify({
             queryText: values.search,
             movies: filteredMovies,
@@ -48,7 +48,7 @@ const Search = ({setSearchedMovies, handleSearchSubmit, setIsLoading, setIsSubmi
       setLocalQuery(movieObject.queryText);
       setIsSubmitted(true);
     }
-      // eslint-disable-next-line
+    // eslint-disable-next-line
   }, []);
 
   return (
@@ -56,21 +56,21 @@ const Search = ({setSearchedMovies, handleSearchSubmit, setIsLoading, setIsSubmi
       <div className="search__container">
         <form onSubmit={handleSubmit} className="search__main">
           <div className="search__input-container">
-            <img src={searchIcon} alt="input icon" className="search__input-icon"/>
+            <img src={searchIcon} alt="input icon" className="search__input-icon" />
             <input
-            type="text"
-            placeholder={localQuery || 'Фильмы'}
-            className="search__input"
-            name='search'
-            value={values.search || ''}
-            autoComplete='off'
-            onChange={handleChange}
-            required/>
+              type="text"
+              placeholder={localQuery || 'Фильмы'}
+              className="search__input"
+              name='search'
+              value={values.search || ''}
+              autoComplete='off'
+              onChange={handleChange}
+              required />
           </div>
           <button type="submit" className="search__input-button" disabled={errors.search ? true : false}></button>
         </form>
         <div className="search__toggle">
-          <FilterCheckbox isSmall={isSmallMovies} setIsSmall={setIsSmallMovies}/>
+          <FilterCheckbox isSmall={isSmallMovies} setIsSmall={setIsSmallMovies} />
           <p className="search__toggle-name">Короткометражки</p>
         </div>
       </div>

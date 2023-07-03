@@ -105,6 +105,7 @@ function App() {
 
   React.useEffect(() => {
     handleAuthorize();
+    // eslint-disable-next-line
   }, [])
 
   React.useEffect(() => {

@@ -7,7 +7,7 @@ import AuthButton from '../AuthButton'
 import AuthInput from '../AuthInput'
 import useForm from '../../hooks/useForm'
 
-const Login = ({handleLogin}) => {
+const Login = ({ handleLogin }) => {
   const [isSubmitting, setIsSubmitting] = React.useState(false)
   const [submitError, setSubmitError] = React.useState('')
   const { values, errors, handleChange } = useForm()

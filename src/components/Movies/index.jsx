@@ -6,7 +6,7 @@ import MoviesCardList from '../MoviesCardList'
 import Preloader from '../Preloader'
 import './styles.scss'
 
-const Movies = ({savedMovies, setSavedMovies, isLoading, setIsLoading}) => {
+const Movies = ({ savedMovies, setSavedMovies, isLoading, setIsLoading }) => {
   const [allMovies, setAllMovies] = React.useState([])
   const [searchedMovies, setSearchedMovies] = React.useState([])
   const [resultPlaceholder, setResultPlaceholder] = React.useState('')
@@ -14,7 +14,7 @@ const Movies = ({savedMovies, setSavedMovies, isLoading, setIsLoading}) => {
 
   const handleSearchSubmit = async () => {
     try {
-    if (allMovies && allMovies.length > 0) return allMovies;
+      if (allMovies && allMovies.length > 0) return allMovies;
       const movies = await getMovies();
       setAllMovies(movies);
       return movies;
@@ -33,16 +33,16 @@ const Movies = ({savedMovies, setSavedMovies, isLoading, setIsLoading}) => {
           handleSearchSubmit={handleSearchSubmit}
           setIsLoading={setIsLoading}
           setIsSubmitted={setIsSubmitted}
-          />
-          {isSubmitted && (isLoading ? (<Preloader/>) : 
-          ((searchedMovies && searchedMovies.length>0) 
-          ? (<MoviesCardList
-            movies={searchedMovies}
-            savedMovies={savedMovies}
-            setSavedMovies={setSavedMovies}
-            isSubmitted={isSubmitted}
-            isLoading={isLoading}/>)
-          : (<h1 className='movies__result-placeholder'>{resultPlaceholder ? resultPlaceholder : 'Ничего не найдено'}</h1>)))}
+        />
+        {isSubmitted && (isLoading ? (<Preloader />) :
+          ((searchedMovies && searchedMovies.length > 0)
+            ? (<MoviesCardList
+              movies={searchedMovies}
+              savedMovies={savedMovies}
+              setSavedMovies={setSavedMovies}
+              isSubmitted={isSubmitted}
+              isLoading={isLoading} />)
+            : (<h1 className='movies__result-placeholder'>{resultPlaceholder ? resultPlaceholder : 'Ничего не найдено'}</h1>)))}
       </Container>
     </section>
   )

@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import './styles.scss'
 
-const HeaderList = ({isBurger, setIsBurger}) => {
+const HeaderList = ({ isBurger, setIsBurger }) => {
   const navigate = useNavigate();
 
   return (
@@ -12,7 +12,7 @@ const HeaderList = ({isBurger, setIsBurger}) => {
         <li className="header__item"><Link to='/movies' onClick={() => setIsBurger(false)} className="header__movies-button">Фильмы</Link></li>
         <li className="header__item"><Link to='/saved-movies' onClick={() => setIsBurger(false)} className="header__saved-movies-button">Сохранённые фильмы</Link></li>
       </div>
-      <li onClick={() => {navigate('/profile');setIsBurger(false)}} className="header__item header__item_account">
+      <li onClick={() => { navigate('/profile'); setIsBurger(false) }} className="header__item header__item_account">
         <button className="header__profile-button">Аккаунт</button>
         <div className="header__profile-icon" />
       </li>

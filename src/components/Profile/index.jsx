@@ -1,5 +1,4 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
 import useForm from '../../hooks/useForm'
 import './styles.scss'
 import { CurrentUserContext } from '../../contexts/CurrentUserContext'
@@ -9,8 +8,8 @@ const Profile = ({ handleLogout, handleUpdateProfile }) => {
   const [isEditable, setIsEditable] = React.useState(false)
   const [isSubmitting, setIsSubmitting] = React.useState(false)
   const [serverError, setServerError] = React.useState('');
-  const { values, errors, handleChange } = useForm({text: user.name, email: user.email});
-  const navigate = useNavigate();
+  const { values, errors, handleChange } = useForm({ text: user.name, email: user.email });
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,7 +18,7 @@ const Profile = ({ handleLogout, handleUpdateProfile }) => {
     await handleUpdateProfile(values.text, values.email, setServerError, setIsEditable);
     setIsSubmitting(false);
   }
-  
+
   return (
     <section className='profile'>
       <h2 className="profile__title">Привет, {user.name}!</h2>
@@ -36,7 +35,7 @@ const Profile = ({ handleLogout, handleUpdateProfile }) => {
               onChange={handleChange}
               required
               readOnly={isEditable ? false : true} />
-              <span className="profile__input-error">{errors.text}</span>
+            <span className="profile__input-error">{errors.text}</span>
           </div>
           <div className="profile__input-row">
             <label htmlFor='email' className="profile__label">E-mail</label>
@@ -49,7 +48,7 @@ const Profile = ({ handleLogout, handleUpdateProfile }) => {
               onChange={handleChange}
               required
               readOnly={isEditable ? false : true} />
-              <span className="profile__input-error">{errors.email}</span>
+            <span className="profile__input-error">{errors.email}</span>
           </div>
         </div>
         {!isEditable ? (
@@ -64,7 +63,7 @@ const Profile = ({ handleLogout, handleUpdateProfile }) => {
               type='submit'
               form='profile'
               className="profile__save-btn"
-              disabled={(errors.text || errors.email || isSubmitting || ((values.text === user.name) && (values.email === user.email)) ) ? true : false}>{isSubmitting ? 'Сохранение...' : 'Сохранить'}</button>
+              disabled={(errors.text || errors.email || isSubmitting || ((values.text === user.name) && (values.email === user.email))) ? true : false}>{isSubmitting ? 'Сохранение...' : 'Сохранить'}</button>
           </div>
         )}
       </form>
