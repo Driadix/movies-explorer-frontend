@@ -48,14 +48,6 @@ const Search = ({setSearchedMovies, handleSearchSubmit, setIsLoading, setIsSubmi
       setLocalQuery(movieObject.queryText);
       setIsSubmitted(true);
     }
-
-    if (localStorage.getItem(`saved-movie`) && location.pathname === '/saved-movies') {
-      const movieObject = JSON.parse(localStorage.getItem('saved-movie'));
-      setIsSmallMovies(movieObject.isSmall);
-      setSearchedMovies(movieObject.movies);
-      setLocalQuery(movieObject.queryText);
-      setIsSubmitted(true);
-    }
       // eslint-disable-next-line
   }, []);
 

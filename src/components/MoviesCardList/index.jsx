@@ -2,7 +2,7 @@ import React from 'react'
 import MoviesCard from '../MoviesCard'
 import './styles.scss'
 
-const MoviesCardList = ({movies, isSubmitted, isLoading, isSaved=false}) => {
+const MoviesCardList = ({movies, savedMovies, setSavedMovies, isSubmitted, isLoading, isSaved=false}) => {
   const [initialSize, setInitialSize] = React.useState(0);
   const [addMoviesCount, setAddMoviesCount] = React.useState(0);
   const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
@@ -37,16 +37,24 @@ const MoviesCardList = ({movies, isSubmitted, isLoading, isSaved=false}) => {
   }, [])
 
   return (
+    isSaved ? (
+      <div className="movies__container">
+        {movies.map((movie) => <MoviesCard key={movie._id} setSavedMovies={setSavedMovies} movie={movie} isSaved={true}/>)}
+      </div>
+  ) : (
     <>
     <div className="movies__container">
-      {shownMovies.map((movie) => <MoviesCard key={movie.id} movie={movie} isSaved={isSaved}/>)}
+      {shownMovies.map((movie) => <MoviesCard key={movie.id} savedMovies={savedMovies} setSavedMovies={setSavedMovies} movie={movie} isSaved={false}/>)}
     </div>
     {isSubmitted && !isLoading && <button
       className={`movies__button ${(shownMovies.length === movies.length)?'movies__button_hidden':''}`}
       onClick={handleMoreMovies}
       >Ещё</button>}
-      </>
+      </>)
   )
 }
+
+
+
 
 export default MoviesCardList

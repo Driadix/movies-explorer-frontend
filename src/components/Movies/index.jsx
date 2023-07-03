@@ -6,7 +6,7 @@ import MoviesCardList from '../MoviesCardList'
 import Preloader from '../Preloader'
 import './styles.scss'
 
-const Movies = ({isLoading, setIsLoading}) => {
+const Movies = ({savedMovies, setSavedMovies, isLoading, setIsLoading}) => {
   const [allMovies, setAllMovies] = React.useState([])
   const [searchedMovies, setSearchedMovies] = React.useState([])
   const [resultPlaceholder, setResultPlaceholder] = React.useState('')
@@ -38,6 +38,8 @@ const Movies = ({isLoading, setIsLoading}) => {
           ((searchedMovies && searchedMovies.length>0) 
           ? (<MoviesCardList
             movies={searchedMovies}
+            savedMovies={savedMovies}
+            setSavedMovies={setSavedMovies}
             isSubmitted={isSubmitted}
             isLoading={isLoading}/>)
           : (<h1 className='movies__result-placeholder'>{resultPlaceholder ? resultPlaceholder : 'Ничего не найдено'}</h1>)))}

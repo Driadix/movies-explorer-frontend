@@ -6,36 +6,26 @@ import Preloader from '../Preloader'
 import { getMyMovies } from '../../utils/MainApi'
 import './styles.scss'
 
-const SavedMovies = ({isLoading, setIsLoading}) => {
+const SavedMovies = ({savedMovies, setSavedMovies, resultPlaceholder, handleFetchMovies, isLoading, setIsLoading}) => {
   const [searchedMovies, setSearchedMovies] = React.useState([])
-  const [resultPlaceholder, setResultPlaceholder] = React.useState('')
-  const [isSubmitted, setIsSubmitted] = React.useState(false);
-
-  const handleSearchSubmit = async () => {
-    try {
-    const movies = await getMyMovies();
-    return movies;
-    }
-    catch (error) {
-      console.log(error);
-      setResultPlaceholder('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз')
-    }
-  }
+  const [isSubmitted, setIsSubmitted] = React.useState(true);
 
   return (
     <section className="saved-movies">
       <Container>
       <Search
           setSearchedMovies={setSearchedMovies}
-          handleSearchSubmit={handleSearchSubmit}
+          handleSearchSubmit={handleFetchMovies}
           setIsLoading={setIsLoading}
           setIsSubmitted={setIsSubmitted}
           isSaved={true}
           />
         {isSubmitted && (isLoading ? (<Preloader/>) : 
-          ((searchedMovies && searchedMovies.length>0) 
+          ((savedMovies && savedMovies.length>0) 
           ? (<MoviesCardList
-            movies={searchedMovies}
+            movies={(searchedMovies && searchedMovies.length>0) ? searchedMovies : savedMovies}
+            savedMovies={savedMovies}
+            setSavedMovies={setSavedMovies}
             isSubmitted={isSubmitted}
             isLoading={isLoading}
             isSaved={true}/>)

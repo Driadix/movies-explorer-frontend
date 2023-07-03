@@ -24,8 +24,8 @@ const validate = (name, value, errors, setErrors) => {
     }
 }
 
-const useForm = () => {
-  const [values, setValues] = useState({});
+const useForm = (initValue = {}) => {
+  const [values, setValues] = useState(initValue);
   const [errors, setErrors] = useState({});
 
   const handleChange = (event) => {

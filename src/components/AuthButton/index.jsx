@@ -12,7 +12,7 @@ const AuthButton = ({buttonName, text, actionLink, errors, isSubmitting, submitE
         type='submit'
         disabled={(errors.text || errors.email || isSubmitting) ? true : false}
         form={`${isRegister ? 'register-form' : 'login-form'}`}
-        >{buttonName}
+        >{isSubmitting ? 'Сохранение...' : buttonName}
       </button>
       <span className="auth-button__error">{submitError}</span>
       <p className="auth-button__text">{text}

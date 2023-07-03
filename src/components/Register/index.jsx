@@ -8,18 +8,19 @@ import AuthInput from '../AuthInput'
 import { register } from '../../utils/MainApi';
 import useForm from '../../hooks/useForm'
 
-const Register = ({handleAuthorize}) => {
+const Register = ({handleLogin}) => {
   const [isSubmitting, setIsSubmitting] = React.useState(false)
   const [submitError, setSubmitError] = React.useState('')
   const {values, errors, handleChange } = useForm()
   const navigate = useNavigate();
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
     setIsSubmitting(true)
     register(values.text, values.email, values.password)
-    .then((res) => {
-      
+    .then(async (res) => {
+      await handleLogin(values.email, values.password, setSubmitError);
+      navigate('/movies', { replace: true });
     })
     .catch(error => setSubmitError((error === 'Ошибка: 409') ? 'Данный email уже существует' : 'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз'))
     .finally(() => setIsSubmitting(false))
