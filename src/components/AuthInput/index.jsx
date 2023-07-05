@@ -1,7 +1,7 @@
 import React from 'react'
 import './styles.scss'
 
-const AuthInput = ({ text, type, value, error, handleChange, min = 1, max = null }) => {
+const AuthInput = ({ text, type, value, error, handleChange, isSubmitting, min = 1, max = null }) => {
 
   return (
     <div className="auth-input">
@@ -16,6 +16,7 @@ const AuthInput = ({ text, type, value, error, handleChange, min = 1, max = null
         placeholder={`Введите ${text}`}
         value={value || ''}
         onChange={handleChange}
+        disabled={(isSubmitting) ? true : false}
         required />
       <span className="auth-input__error">{error}</span>
     </div>

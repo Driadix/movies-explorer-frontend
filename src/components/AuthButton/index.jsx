@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import './styles.scss'
 
-const AuthButton = ({ buttonName, text, actionLink, errors, isSubmitting, submitError, isRegister = false }) => {
+const AuthButton = ({ buttonName, text, actionLink, isValid, isSubmitting, submitError, isRegister = false }) => {
   const navigate = useNavigate()
 
   return (
@@ -10,7 +10,7 @@ const AuthButton = ({ buttonName, text, actionLink, errors, isSubmitting, submit
       <button
         className="auth-button__submit"
         type='submit'
-        disabled={(errors.text || errors.email || isSubmitting) ? true : false}
+        disabled={(!isValid || isSubmitting) ? true : false}
         form={`${isRegister ? 'register-form' : 'login-form'}`}
       >{isSubmitting ? 'Сохранение...' : buttonName}
       </button>

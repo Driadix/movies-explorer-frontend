@@ -5,7 +5,7 @@ import Container from '../Container';
 import HeaderList from './HeaderList';
 import './styles.scss'
 
-const Header = ({ isIntroPage = false }) => {
+const Header = ({ isLoggedIn = true }) => {
   const [isBurgerOpened, setIsBurgerOpened] = React.useState(false);
 
   const handleResize = () => {
@@ -23,12 +23,12 @@ const Header = ({ isIntroPage = false }) => {
 
   return (
 
-    <header className={`header${isIntroPage ? ' header_theme_gray' : ''}`}>
+    <header className={`header${!isLoggedIn ? ' header_theme_gray' : ''}`}>
       <Container>
         <div className={`header__flex-container${isBurgerOpened ? ' header__flex-container-burger' : ''}`}>
           <img onClick={() => navigate('/')} src={logo} alt="Site logo" className="header__logo" />
           <nav className="header__content">
-            {isIntroPage ?
+            {!isLoggedIn ?
               (
                 <ul className="header__list-intro">
                   <li className="header__item"><Link to='/signup' className="header__register-button">Регистрация</Link></li>

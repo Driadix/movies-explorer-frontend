@@ -36,7 +36,7 @@ function App() {
             name: user.name,
             email: user.email
           });
-          setIsLoggedIn(true);
+          setIsLoggedIn(true)
           navigate(location.pathname)
         }
         else {
@@ -65,7 +65,7 @@ function App() {
       }
     }
     catch (error) {
-      setServerError(error)
+      setServerError((error === 'Ошибка: 401') ? 'Неправильные почта или пароль' : 'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз')
     }
   }
 
@@ -92,15 +92,17 @@ function App() {
 
   const handleUpdateProfile = async (name, email, setServerError, setIsEditable) => {
     try {
+      setServerError('')
       const newUserData = await updateProfile(name, email)
       setCurrentUser({
         name: newUserData.name,
         email: newUserData.email
       })
+      alert('Данные успешно обновлены!')
       setIsEditable(false);
     }
     catch (error) {
-      setServerError(error)
+      setServerError((error === 'Ошибка: 400') ? 'Неккоректные почта или имя' : 'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз')
     }
   }
 
@@ -108,6 +110,10 @@ function App() {
     handleAuthorize();
     // eslint-disable-next-line
   }, [])
+
+  React.useEffect(() => {
+    console.log(isLoggedIn)
+  }, [isLoggedIn])
 
   React.useEffect(() => {
     if (isLoggedIn) {
@@ -121,9 +127,9 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
         <div className="App">
           <Routes>
-            <Route path='/' element={<><Header isIntroPage={true} /><Main /><Footer /></>} />
+            <Route path='/' element={<><Header isLoggedIn={isLoggedIn} /><Main /><Footer /></>} />
             <Route path="/signup" element={<ProtectedRouteAuth component={Register} isLoggedIn={isLoggedIn} handleLogin={handleLogin}/>} />  
-            <Route path="/signin" element={<ProtectedRouteAuth component={Login} isLoggedIn={isLoggedIn} handleLogin={handleLogin}/>} />
+            <Route path="/signin" element={<ProtectedRouteAuth component={Login} isLoggedIn={isLoggedIn} isLogin={isLoggedIn} handleLogin={handleLogin}/>} />
             <Route path="/movies" element={
               <>
                 <Header />

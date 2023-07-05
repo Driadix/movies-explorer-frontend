@@ -8,7 +8,8 @@ const Profile = ({ handleLogout, handleUpdateProfile }) => {
   const [isEditable, setIsEditable] = React.useState(false)
   const [isSubmitting, setIsSubmitting] = React.useState(false)
   const [serverError, setServerError] = React.useState('');
-  const { values, errors, handleChange } = useForm({ text: user.name, email: user.email });
+  const [successText, setSuccessText] = React.useState('')
+  const { values, errors, handleChange, isValid } = useForm({ text: user.name, email: user.email });
 
 
   const handleSubmit = async (e) => {
@@ -34,6 +35,7 @@ const Profile = ({ handleLogout, handleUpdateProfile }) => {
               value={values.text}
               onChange={handleChange}
               required
+              disabled={(isSubmitting) ? true : false}
               readOnly={isEditable ? false : true} />
             <span className="profile__input-error">{errors.text}</span>
           </div>
@@ -47,6 +49,7 @@ const Profile = ({ handleLogout, handleUpdateProfile }) => {
               value={values.email}
               onChange={handleChange}
               required
+              disabled={(isSubmitting) ? true : false}
               readOnly={isEditable ? false : true} />
             <span className="profile__input-error">{errors.email}</span>
           </div>
@@ -63,7 +66,7 @@ const Profile = ({ handleLogout, handleUpdateProfile }) => {
               type='submit'
               form='profile'
               className="profile__save-btn"
-              disabled={(errors.text || errors.email || isSubmitting || ((values.text === user.name) && (values.email === user.email))) ? true : false}>{isSubmitting ? 'Сохранение...' : 'Сохранить'}</button>
+              disabled={(!isValid || isSubmitting || ((values.text === user.name) && (values.email === user.email))) ? true : false}>{isSubmitting ? 'Сохранение...' : 'Сохранить'}</button>
           </div>
         )}
       </form>
