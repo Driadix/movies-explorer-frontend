@@ -7,8 +7,8 @@ import './styles.scss'
 
 const SavedMovies = ({ savedMovies, setSavedMovies, resultPlaceholder, handleFetchMovies, isLoading, setIsLoading }) => {
   const [searchedMovies, setSearchedMovies] = React.useState([])
-  const [isSubmitted, setIsSubmitted] = React.useState(true);
-
+  const [isSubmitted, setIsSubmitted] = React.useState(false);
+  console.log(searchedMovies)
   return (
     <section className="saved-movies">
       <Container>
@@ -17,12 +17,14 @@ const SavedMovies = ({ savedMovies, setSavedMovies, resultPlaceholder, handleFet
           handleSearchSubmit={handleFetchMovies}
           setIsLoading={setIsLoading}
           setIsSubmitted={setIsSubmitted}
+          allMovies={savedMovies}
+          setAllMovies={setSavedMovies}
           isSaved={true}
         />
-        {isSubmitted && (isLoading ? (<Preloader />) :
-          ((savedMovies && savedMovies.length > 0)
+        {(isLoading ? (<Preloader />) :
+          (((savedMovies && savedMovies.length > 0) && !(isSubmitted && searchedMovies.length <= 0))
             ? (<MoviesCardList
-              movies={(searchedMovies && searchedMovies.length > 0) ? searchedMovies : savedMovies}
+              movies={(isSubmitted) ? searchedMovies : savedMovies}
               savedMovies={savedMovies}
               setSavedMovies={setSavedMovies}
               isSubmitted={isSubmitted}

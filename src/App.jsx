@@ -72,6 +72,7 @@ function App() {
   const handleFetchMovies = async () => {
     try {
     const movies = await getMyMovies();
+    setSavedMovies(movies);
     return movies;
     }
     catch (error) {
@@ -112,14 +113,8 @@ function App() {
   }, [])
 
   React.useEffect(() => {
-    console.log(isLoggedIn)
-  }, [isLoggedIn])
-
-  React.useEffect(() => {
     if (isLoggedIn) {
-    handleFetchMovies()
-    .then(res => setSavedMovies(res))
-    .catch(error => setResultPlaceholder('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз'))
+      handleFetchMovies()
     }
   }, [isLoggedIn])
 

@@ -5,7 +5,7 @@ const validate = (name, value, errors, setErrors, setIsValid) => {
     switch (name) {
         case 'search':
             if (!SEARCH_REGEXP.test(value)) {
-                setErrors({ ...errors, search: 'Нужно ввести ключевое слово' })
+                setErrors({ ...errors, search: 'Введите валидный поисковый запрос (буквы, цифры, пробелы)' })
                 setIsValid(false)
             }
             else setErrors({ ...errors, search: '' })
@@ -36,10 +36,10 @@ const validate = (name, value, errors, setErrors, setIsValid) => {
     }
 }
 
-const useForm = (initValue = {}) => {
+const useForm = (initValue = {}, isValidValue=false) => {
     const [values, setValues] = useState(initValue);
     const [errors, setErrors] = useState({});
-    const [isValid, setIsValid] = useState(false);
+    const [isValid, setIsValid] = useState(isValidValue);
 
     const handleChange = (event) => {
         event.persist();
@@ -48,8 +48,9 @@ const useForm = (initValue = {}) => {
         let name = event.target.name;
         let valueWithSpaces = event.target.value;
         let value = valueWithSpaces.trimStart();
-        
+
         setErrors({...errors, [name]: target.validationMessage });
+        if (target.validationMessage === 'Заполните это поле.' && name === 'search') setErrors({...errors, [name]: 'Введите ключевое слово' });
         setIsValid(target.closest("form").checkValidity());
         if (!target.validationMessage) validate(name, value, errors, setErrors, setIsValid);
 

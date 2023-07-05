@@ -6,11 +6,50 @@ import useForm from '../../hooks/useForm'
 import { filterSearchSubmit } from '../../utils/filter'
 import './styles.scss'
 
-const Search = ({ setSearchedMovies, handleSearchSubmit, setIsLoading, setIsSubmitted, isSaved = false }) => {
+const Search = ({ setSearchedMovies, handleSearchSubmit, setIsLoading, setIsSubmitted, allMovies = [], setAllMovies, isSubmitted, isSaved = false }) => {
   const [isSmallMovies, setIsSmallMovies] = React.useState(false)
-  const [localQuery, setLocalQuery] = React.useState('')
-  const { values, errors, handleChange } = useForm()
+  const [localQuery, setLocalQuery] = React.useState((state) => {
+    return state = (localStorage.getItem('movie') && !isSaved) ? JSON.parse(localStorage.getItem('movie')).queryText : '';
+  })
+  const [isSearchDisabled, setIsSearchDisabled] = React.useState(true)
+  const { values, errors, handleChange, isValid } = useForm({ search: localQuery })
   const location = useLocation();
+
+  React.useEffect(() => {
+    if (!isSaved) {
+      if (allMovies && allMovies.length > 0 && isSubmitted) {
+        const filteredMovies = filterSearchSubmit(values.search, allMovies, isSmallMovies)
+        setSearchedMovies(filteredMovies);
+        localStorage.setItem('movie', JSON.stringify({
+          ...JSON.parse(localStorage.getItem('movie')),
+          movies: filteredMovies,
+          isSmall: isSmallMovies,
+        }));
+      }
+    }
+    else {
+      if (allMovies && allMovies.length > 0) {
+        setIsSubmitted(true)
+        const filteredMovies = filterSearchSubmit(values.search, allMovies, isSmallMovies)
+        setSearchedMovies(filteredMovies)
+      }
+    }
+    // eslint-disable-next-line
+  }, [isSmallMovies])
+
+  React.useEffect(() => {
+    if (isSaved) {
+      setSearchedMovies(state => {
+        const allMoviesIds = allMovies.map(item => item.movieId);
+        return state.filter(item => allMoviesIds.includes(item.movieId))
+      })
+    }
+    // eslint-disable-next-line
+  }, [allMovies])
+
+  React.useEffect(() => {
+    setIsSearchDisabled(!isValid ? true : false);
+  }, [isValid])
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,18 +60,12 @@ const Search = ({ setSearchedMovies, handleSearchSubmit, setIsLoading, setIsSubm
       if (movies && movies.length > 0) {
         const filteredMovies = filterSearchSubmit(values.search, movies, isSmallMovies)
         setSearchedMovies(filteredMovies);
-        if (isSaved) {
-          localStorage.setItem('saved-movie', JSON.stringify({
-            queryText: values.search,
-            movies: filteredMovies,
-            isSmall: isSmallMovies,
-          }));
-        }
-        else {
+        if (!isSaved) {
           localStorage.setItem('movie', JSON.stringify({
             queryText: values.search,
             movies: filteredMovies,
             isSmall: isSmallMovies,
+            isDisabled: isSearchDisabled,
           }));
         }
       }
@@ -42,10 +75,12 @@ const Search = ({ setSearchedMovies, handleSearchSubmit, setIsLoading, setIsSubm
 
   React.useEffect(() => {
     if (localStorage.getItem(`movie`) && location.pathname === '/movies') {
+      setAllMovies(async (state) => await handleSearchSubmit());
       const movieObject = JSON.parse(localStorage.getItem('movie'));
       setIsSmallMovies(movieObject.isSmall);
       setSearchedMovies(movieObject.movies);
       setLocalQuery(movieObject.queryText);
+      setIsSearchDisabled(movieObject.isDisabled)
       setIsSubmitted(true);
     }
     // eslint-disable-next-line
@@ -59,15 +94,15 @@ const Search = ({ setSearchedMovies, handleSearchSubmit, setIsLoading, setIsSubm
             <img src={searchIcon} alt="input icon" className="search__input-icon" />
             <input
               type="text"
-              placeholder={localQuery || 'Фильмы'}
+              placeholder='Фильмы'
               className="search__input"
               name='search'
-              value={values.search || ''}
+              value={values.search}
               autoComplete='off'
               onChange={handleChange}
               required />
           </div>
-          <button type="submit" className="search__input-button" disabled={errors.search ? true : false}></button>
+          <button type="submit" className="search__input-button" disabled={isSearchDisabled}></button>
         </form>
         <div className="search__toggle">
           <FilterCheckbox isSmall={isSmallMovies} setIsSmall={setIsSmallMovies} />

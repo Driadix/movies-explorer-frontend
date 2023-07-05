@@ -3,17 +3,24 @@ import { addMyMovie, deleteMyMovie } from '../../utils/MainApi';
 import './styles.scss'
 
 const MoviesCard = ({ savedMovies, setSavedMovies, movie, isSaved }) => {
-  const savedMovie = (savedMovies && savedMovies.length > 0) ? savedMovies.find((savedMovie) => savedMovie.movieId === movie.id) : false;
   const { image, nameRU, duration } = movie;
-  const [isCardLiked, setIsCardLiked] = React.useState(savedMovie);
+  const [savedMovieState, setSavedMovieState] = React.useState(false)
+  const [isCardLiked, setIsCardLiked] = React.useState(false);
   const formattedDuration = duration < 60 ? `${duration}м` : `${Math.floor(duration / 60)}ч ${duration % 60}м`;
+
+  React.useEffect(() => {
+    const savedMovie = savedMovies?.find((savedMovie) => savedMovie.movieId === movie.id);
+    setSavedMovieState(savedMovie)
+    setIsCardLiked(!!savedMovie);
+    // eslint-disable-next-line
+  }, [savedMovies]);
 
   const handleCardLike = () => {
     if (isCardLiked) {
-      deleteMyMovie(savedMovie._id)
+      deleteMyMovie(savedMovieState._id)
         .then(res => {
           setIsCardLiked(false);
-          setSavedMovies((state) => state.filter((item) => item._id !== savedMovie._id));
+          setSavedMovies((state) => state.filter((item) => item._id !== savedMovieState._id));
         })
         .catch(error => console.log(error))
     }

@@ -7,3 +7,20 @@ export const EMAIL_REGEXP = /^[A-Za-z][A-Za-z0-9_-]*@[A-Za-z0-9_-]+\.[A-Za-z0-9_
 export const PASSWORD_REGEXP = /^[^\s]+$/;
 
 export const SMALL_DURATION = 40;
+
+export const SCREEN_SIZEZ = {
+  MEDIUM: 1280,
+  SMALL: 892
+}
+
+export const INITIAL_SIZES = {
+  LARGE: 12,
+  MEDIUM: 8,
+  SMALL: 5
+}
+
+export const ADD_MOVIES_COUNT = {
+  MEDIUM: 3,
+  SMALL: 2
+}
+

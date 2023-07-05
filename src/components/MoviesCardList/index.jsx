@@ -1,29 +1,30 @@
 import React from 'react'
 import MoviesCard from '../MoviesCard'
+import { INITIAL_SIZES, ADD_MOVIES_COUNT, SCREEN_SIZEZ } from '../../utils/constants.js'
 import './styles.scss'
 
 const MoviesCardList = ({ movies, savedMovies, setSavedMovies, isSubmitted, isLoading, isSaved = false }) => {
   const [initialSize, setInitialSize] = React.useState(0);
   const [addMoviesCount, setAddMoviesCount] = React.useState(0);
   const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
-  const shownMovies = movies.slice(0, initialSize);
+  const shownMovies = movies?.slice(0, initialSize);
 
   const handleMoreMovies = () => {
     setInitialSize(initialSize + addMoviesCount)
   }
 
   React.useEffect(() => {
-    if (windowWidth < 481) {
-      setInitialSize(5);
-      setAddMoviesCount(2);
+    if (windowWidth < SCREEN_SIZEZ.SMALL) {
+      setInitialSize(INITIAL_SIZES.SMALL);
+      setAddMoviesCount(ADD_MOVIES_COUNT.SMALL);
     }
-    else if (windowWidth < 769) {
-      setInitialSize(8);
-      setAddMoviesCount(2);
+    else if (windowWidth < SCREEN_SIZEZ.MEDIUM) {
+      setInitialSize(INITIAL_SIZES.MEDIUM);
+      setAddMoviesCount(ADD_MOVIES_COUNT.SMALL);
     }
     else {
-      setInitialSize(12);
-      setAddMoviesCount(3);
+      setInitialSize(INITIAL_SIZES.LARGE);
+      setAddMoviesCount(ADD_MOVIES_COUNT.MEDIUM);
     }
   }, [windowWidth])
 

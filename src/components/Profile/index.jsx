@@ -8,7 +8,6 @@ const Profile = ({ handleLogout, handleUpdateProfile }) => {
   const [isEditable, setIsEditable] = React.useState(false)
   const [isSubmitting, setIsSubmitting] = React.useState(false)
   const [serverError, setServerError] = React.useState('');
-  const [successText, setSuccessText] = React.useState('')
   const { values, errors, handleChange, isValid } = useForm({ text: user.name, email: user.email });
 
 

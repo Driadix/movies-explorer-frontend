@@ -33,6 +33,10 @@ const Movies = ({ savedMovies, setSavedMovies, isLoading, setIsLoading }) => {
           handleSearchSubmit={handleSearchSubmit}
           setIsLoading={setIsLoading}
           setIsSubmitted={setIsSubmitted}
+          searchedMovies={searchedMovies}
+          allMovies={allMovies}
+          setAllMovies={setAllMovies}
+          isSubmitted={isSubmitted}
         />
         {isSubmitted && (isLoading ? (<Preloader />) :
           ((searchedMovies && searchedMovies.length > 0)
