@@ -1,5 +1,4 @@
 import { MAIN_API_URL } from './constants';
-import { MOVIES_API_URL } from './constants';
 import { makeRequest } from './apiUtils';
 
 export const getMyMovies = () => {
@@ -24,10 +23,10 @@ export const addMyMovie = (movie) => {
       duration: movie.duration,
       year: movie.year,
       description: movie.description,
-      image: MOVIES_API_URL + movie.image,
+      image: `https://api.nomoreparties.co` + movie.image.url,
       trailerLink: movie.trailerLink,
-      thumbnail: MOVIES_API_URL + movie.thumbnail,
-      movieId: movie.movieId,
+      thumbnail: `https://api.nomoreparties.co` + movie.thumbnail,
+      movieId: movie.id,
       nameRU: movie.nameRU,
       nameEN: movie.nameEN,
     })
@@ -53,7 +52,7 @@ export const getMyUser = () => {
   })
 }
 
-export const updateProfile = (user) => {
+export const updateProfile = (name, email) => {
   return makeRequest(`${MAIN_API_URL}/users/me`, {
     method: 'PATCH',
     headers: {
@@ -61,8 +60,8 @@ export const updateProfile = (user) => {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      name: user.name,
-      email: user.email,
+      name,
+      email,
     })
   })
 }

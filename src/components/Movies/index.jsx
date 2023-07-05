@@ -1,46 +1,52 @@
 import React from 'react'
-import card1 from '../../images/card-1.png'
-import card2 from '../../images/card-2.png'
+import { getMovies } from '../../utils/MoviesApi'
 import Container from '../Container'
 import Search from '../Search'
 import MoviesCardList from '../MoviesCardList'
+import Preloader from '../Preloader'
 import './styles.scss'
 
-const Movies = () => {
+const Movies = ({ savedMovies, setSavedMovies, isLoading, setIsLoading }) => {
+  const [allMovies, setAllMovies] = React.useState([])
+  const [searchedMovies, setSearchedMovies] = React.useState([])
+  const [resultPlaceholder, setResultPlaceholder] = React.useState('')
+  const [isSubmitted, setIsSubmitted] = React.useState(false);
 
-  const movies = [
-    {
-      image: card1,
-      title: 'Киноальманах «100 лет дизайна»',
-      text: '1ч 3м',
-      isLiked: false,
-    },
-    {
-      image: card1,
-      title: 'Дженис: Маленькая девочка грустит',
-      text: '1ч 42м',
-      isLiked: true,
-    },
-    {
-      image: card2,
-      title: 'Дженис: Маленькая девочка грустит',
-      text: '1ч 42м',
-      isLiked: false,
-    },
-    {
-      image: card2,
-      title: 'Дженис: Маленькая девочка грустит',
-      text: '1ч 42м',
-      isLiked: false,
-    },
-  ]
+  const handleSearchSubmit = async () => {
+    try {
+      if (allMovies && allMovies.length > 0) return allMovies;
+      const movies = await getMovies();
+      setAllMovies(movies);
+      return movies;
+    }
+    catch (error) {
+      console.log(error);
+      setResultPlaceholder('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз')
+    }
+  }
 
   return (
     <section className="movies">
       <Container>
-        <Search />
-        <MoviesCardList movies={movies}/>
-        <button className="movies__button">Ещё</button>
+        <Search
+          setSearchedMovies={setSearchedMovies}
+          handleSearchSubmit={handleSearchSubmit}
+          setIsLoading={setIsLoading}
+          setIsSubmitted={setIsSubmitted}
+          searchedMovies={searchedMovies}
+          allMovies={allMovies}
+          setAllMovies={setAllMovies}
+          isSubmitted={isSubmitted}
+        />
+        {isSubmitted && (isLoading ? (<Preloader />) :
+          ((searchedMovies && searchedMovies.length > 0)
+            ? (<MoviesCardList
+              movies={searchedMovies}
+              savedMovies={savedMovies}
+              setSavedMovies={setSavedMovies}
+              isSubmitted={isSubmitted}
+              isLoading={isLoading} />)
+            : (<h1 className='movies__result-placeholder'>{resultPlaceholder ? resultPlaceholder : 'Ничего не найдено'}</h1>)))}
       </Container>
     </section>
   )

@@ -67,6 +67,7 @@
 
 .profile__input {
   @include input-reset;
+  position: relative;
   text-align: right;
   background-color: transparent;
   font-size: $fs-small-1;
@@ -78,6 +79,14 @@
     color: #000000;
     opacity: 1;
   }
+}
+
+.profile__input-error {
+  color: $reaction-color;
+  font-size: $fs-small-0;
+  position: absolute;
+  top: 17px;
+  right: 0px;
 }
 
 .profile__button-area {
@@ -123,6 +132,11 @@
   font-size: $fs-primary;
   padding: 13px 0 15px 0;
   color: #ffffff;
+
+  &:disabled {
+    opacity: 0.2;
+    cursor: auto;
+  }
 }
 
 .profile__error {

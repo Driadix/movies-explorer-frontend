@@ -93,6 +93,11 @@
     margin: 0 20px 0 40px;
   }
 
+  &:disabled {
+    opacity: 0.2;
+    cursor: default;
+  }
+
   &::after {
     content: '';
     display: block;
@@ -134,5 +139,19 @@
   @include media-q($breakpoint-small) {
     font-size: $fs-small-1;
     padding: 0;
+  }
+}
+
+.search__input-error {
+  display: block;
+  color: $reaction-color;
+  font-size: $fs-small-3;
+  padding-top: 10px;
+
+  @include media-q($breakpoint-small) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: $fs-small-2;
   }
 }

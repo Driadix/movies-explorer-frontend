@@ -1,45 +1,36 @@
 import React from 'react'
 import Container from '../Container'
 import Search from '../Search'
-import card1 from '../../images/card-1.png'
-import card2 from '../../images/card-2.png'
 import MoviesCardList from '../MoviesCardList'
+import Preloader from '../Preloader'
 import './styles.scss'
 
-const SavedMovies = () => {
-
-  const movies = [
-    {
-      image: card1,
-      title: 'Киноальманах «100 лет дизайна»',
-      text: '1ч 3м',
-      isLiked: false,
-    },
-    {
-      image: card1,
-      title: 'Дженис: Маленькая девочка грустит',
-      text: '1ч 42м',
-      isLiked: true,
-    },
-    {
-      image: card2,
-      title: 'Дженис: Маленькая девочка грустит',
-      text: '1ч 42м',
-      isLiked: false,
-    },
-    {
-      image: card2,
-      title: 'Дженис: Маленькая девочка грустит',
-      text: '1ч 42м',
-      isLiked: false,
-    },
-  ]
-
+const SavedMovies = ({ savedMovies, setSavedMovies, resultPlaceholder, handleFetchMovies, isLoading, setIsLoading }) => {
+  const [searchedMovies, setSearchedMovies] = React.useState([])
+  const [isSubmitted, setIsSubmitted] = React.useState(false);
+  console.log(searchedMovies)
   return (
     <section className="saved-movies">
       <Container>
-        <Search />
-        <MoviesCardList movies={movies} isSaved={true}/>
+        <Search
+          setSearchedMovies={setSearchedMovies}
+          handleSearchSubmit={handleFetchMovies}
+          setIsLoading={setIsLoading}
+          setIsSubmitted={setIsSubmitted}
+          allMovies={savedMovies}
+          setAllMovies={setSavedMovies}
+          isSaved={true}
+        />
+        {(isLoading ? (<Preloader />) :
+          (((savedMovies && savedMovies.length > 0) && !(isSubmitted && searchedMovies.length <= 0))
+            ? (<MoviesCardList
+              movies={(isSubmitted) ? searchedMovies : savedMovies}
+              savedMovies={savedMovies}
+              setSavedMovies={setSavedMovies}
+              isSubmitted={isSubmitted}
+              isLoading={isLoading}
+              isSaved={true} />)
+            : (<h1 className='movies__result-placeholder'>{resultPlaceholder ? resultPlaceholder : 'Ничего не найдено'}</h1>)))}
       </Container>
     </section>
   )
