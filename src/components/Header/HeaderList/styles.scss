@@ -71,12 +71,10 @@
 
 .header__movies-button {
   @include link-reset;
-  font-weight: $fw-medium;
   line-height: $base-line-height;
 
   @include media-q($breakpoint-medium) {
     font-size: $fs-medium;
-    font-weight: $fw-medium;
 
     &:hover {
       border-bottom: 2px solid #000000;;
@@ -84,18 +82,9 @@
   }
 }
 
-.header__saved-movies-button {
+.header__movies-button_active {
   @include link-reset;
-  line-height: $base-line-height;
-
-  @include media-q($breakpoint-medium) {
-    font-size: $fs-medium;
-    font-weight: $fw-medium;
-
-    &:hover {
-      border-bottom: 2px solid #000000;;
-    }
-  }
+  font-weight: $fw-medium;
 }
 
 .header__profile-button {
