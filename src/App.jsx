@@ -3,6 +3,7 @@ import './App.scss';
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { CurrentUserContext } from './contexts/CurrentUserContext';
 import ProtectedRoute from './components/ProtectedRoute';
+import ProtectedRouteAuth from './components/ProtectedRouteAuth';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Register from './components/Register'
@@ -121,8 +122,8 @@ function App() {
         <div className="App">
           <Routes>
             <Route path='/' element={<><Header isIntroPage={true} /><Main /><Footer /></>} />
-            <Route path="/signup" element={<Register handleLogin={handleLogin}/>} />
-            <Route path="/signin" element={<Login handleLogin={handleLogin} />} />
+            <Route path="/signup" element={<ProtectedRouteAuth component={Register} isLoggedIn={isLoggedIn} handleLogin={handleLogin}/>} />  
+            <Route path="/signin" element={<ProtectedRouteAuth component={Login} isLoggedIn={isLoggedIn} handleLogin={handleLogin}/>} />
             <Route path="/movies" element={
               <>
                 <Header />
