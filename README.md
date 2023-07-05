@@ -1,6 +1,6 @@
 ## Movies Frontend
 Frontend markup link: https://disk.yandex.ru/d/tIqlTwa-iICGBg
-Frontend link: https://driadix.movies.nomoredomains.rocks
+Frontend link: https://movies-explorer-frontend-weld.vercel.app
 Pull request link: https://github.com/Driadix/movies-explorer-frontend/pull/2
 In the project directory, you can run:
 
